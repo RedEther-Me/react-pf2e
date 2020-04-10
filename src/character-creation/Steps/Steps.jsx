@@ -4,10 +4,9 @@ import { Card, Row, Col } from "../../components";
 
 import Step from "./Step";
 import { saveAndContinue } from "../creationActions";
-import { STAGE_HERITAGE_DATA } from "../creationReducer";
 
 export default (props) => {
-  const { steps, state, dispatch } = props;
+  const { steps, state, dispatch, nextStage } = props;
 
   return (
     <Card fullHeight>
@@ -20,9 +19,7 @@ export default (props) => {
         <Col>
           <button
             className="btn btn-primary"
-            onClick={() =>
-              dispatch(saveAndContinue({ nextStep: STAGE_HERITAGE_DATA }))
-            }
+            onClick={() => dispatch(saveAndContinue({ nextStep: nextStage }))}
           >
             Save And Continue
           </button>

@@ -5,27 +5,32 @@ import { Card, SelectionLayout } from "../components";
 import Steps from "./Steps";
 import Stages from "./Stages";
 import AncestryStep from "./AncestryStep";
+import HeritageStage from "./HeritageStage";
 
-import creationReducer, {
-  initialState,
+import {
   STAGE_ANCESTRY,
   STAGE_ANCESTRY_DATA,
-} from "./creationReducer";
+  STAGE_HERITAGE,
+  STAGE_HERITAGE_DATA,
+} from "./constants";
+import creationReducer, { initialState } from "./creationReducer";
 
 const mapComponent = (stepName) => {
   switch (stepName) {
     case STAGE_ANCESTRY:
-      return [STAGE_ANCESTRY_DATA.steps, AncestryStep];
+      return [STAGE_ANCESTRY_DATA.steps, AncestryStep, STAGE_HERITAGE];
+    case STAGE_HERITAGE:
+      return [STAGE_HERITAGE_DATA.steps, HeritageStage, ""];
     default:
-      return () => null;
+      return [];
   }
 };
 
 export default (props) => {
   const [state, dispatch] = useReducer(creationReducer, initialState);
 
-  const [steps, SecondComponent] = mapComponent(state.currentStage);
-  const firstColumn = <Steps {...{ state, dispatch, steps }} />;
+  const [steps, SecondComponent, nextStage] = mapComponent(state.currentStage);
+  const firstColumn = <Steps {...{ state, dispatch, steps, nextStage }} />;
   const secondColumn = <SecondComponent {...{ state, dispatch }} />;
 
   return (

@@ -1,7 +1,8 @@
 import {
-  STAGE_ANCESTRY,
   defaultAttributes,
+  STAGE_ANCESTRY,
   STEP_ANCESTRY_ABILITIES,
+  STAGE_HERITAGE,
 } from "./constants";
 
 const modifyAbilityScore = (preview, ability, amount) => {
@@ -53,6 +54,7 @@ const combineAncestry = (acc, choice) => {
 const stepMap = {
   [STAGE_ANCESTRY]: combine(combineTraits, combineState, combineAncestry),
   [STEP_ANCESTRY_ABILITIES]: combine(combineAbilityPicker),
+  [STAGE_HERITAGE]: combine(combineState),
 };
 
 export const calculateState = (order, choices) => {
