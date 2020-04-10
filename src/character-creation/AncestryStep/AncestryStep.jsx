@@ -1,23 +1,26 @@
 import React from "react";
-import classnames from "classnames";
 
 import { Row, Col } from "../../components";
 
 import AncestrySelection from "./AncestrySelection";
 import AncestryAbilityBoosts from "./AncestryAbilityBoosts";
+import { STAGE_ANCESTRY, STEP_ANCESTRY_ABILITIES } from "../creationReducer";
 
-export default props => {
-  const { state, dispatch } = props;
-  const isAbilityHidden = !state.currentStep.ancestry;
-
-  return (
-    <Row>
-      <Col>
-        <AncestrySelection {...{ state, dispatch }} />
-      </Col>
-      <Col className={classnames({ "d-none": isAbilityHidden })}>
-        <AncestryAbilityBoosts {...{ state, dispatch }} />
-      </Col>
-    </Row>
-  );
+const mapComponent = ({ state, dispatch }) => {
+  switch (state.currentStep) {
+    case STAGE_ANCESTRY: {
+      return <AncestrySelection {...{ state, dispatch }} />;
+    }
+    case STEP_ANCESTRY_ABILITIES: {
+      return <AncestryAbilityBoosts {...{ state, dispatch }} />;
+    }
+    default:
+      return null;
+  }
 };
+
+const AncestryStep = (props) => {
+  return mapComponent(props);
+};
+
+export default AncestryStep;

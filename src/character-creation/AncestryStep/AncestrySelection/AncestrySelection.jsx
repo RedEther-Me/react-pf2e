@@ -5,13 +5,14 @@ import { ancestries } from "../../../data";
 
 import AncestrySelectionOption from "./AncestrySelectionOption";
 
-import { saveAndContinue } from "../../creationActions";
-import { STEP_HERITAGE_DATA } from "../../creationReducer";
+import { nextStep } from "../../creationActions";
+import { STAGE_ANCESTRY, STEP_ANCESTRY_ABILITIES } from "../../creationReducer";
 
-export default props => {
+export default (props) => {
   const { state, dispatch } = props;
 
-  const { isValid } = state.currentStep;
+  const isValid = STAGE_ANCESTRY in state.choices;
+
   const header = <CardHeader label="Ancestry Selection" isValid={isValid} />;
 
   return (
@@ -19,7 +20,7 @@ export default props => {
       <Row>
         <Col>
           <div className="list-group">
-            {ancestries.list.map(ancestry => {
+            {ancestries.list.map((ancestry) => {
               return (
                 <AncestrySelectionOption
                   {...{ ancestry, state, dispatch }}
@@ -36,10 +37,10 @@ export default props => {
             className="btn btn-primary"
             disabled={!isValid}
             onClick={() =>
-              dispatch(saveAndContinue({ nextStep: STEP_HERITAGE_DATA }))
+              dispatch(nextStep({ step: STEP_ANCESTRY_ABILITIES }))
             }
           >
-            Save And Continue
+            Continue
           </button>
         </Col>
       </Row>

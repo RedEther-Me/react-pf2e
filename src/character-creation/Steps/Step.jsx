@@ -1,17 +1,28 @@
 import React from "react";
 import classnames from "classnames";
 
-export default props => {
-  const { step, state } = props;
-  const isActive = state.currentStep.name === step.name;
+import { nextStep } from "../creationActions";
+
+export default (props) => {
+  const { step, state, dispatch } = props;
+  const isActive = state.currentStep === step.name;
+  const isEnabled = state.order.includes(step.name);
 
   return (
-    <button
+    <li
       className={classnames("list-group-item list-group-item-action", {
-        active: isActive
+        active: isActive,
+        "list-group-item-primary": isEnabled,
+        "list-group-item-dark": !isEnabled,
       })}
+      disabled={!isEnabled}
+      onClick={() => {
+        if (isEnabled) {
+          dispatch(nextStep({ step: step.name }));
+        }
+      }}
     >
       {step.name}
-    </button>
+    </li>
   );
 };
