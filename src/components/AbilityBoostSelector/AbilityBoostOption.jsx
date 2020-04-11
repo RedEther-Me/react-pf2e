@@ -2,7 +2,7 @@ import React from "react";
 
 import { Row, Col, Dropdown } from "..";
 
-export default props => {
+export default (props) => {
   const { group, selected, index, selectAction } = props;
 
   if (typeof group === "string") {
@@ -24,9 +24,11 @@ export default props => {
 
   const current = selected[index] || "FREE";
   const options = group.filter(
-    ability =>
+    (ability) =>
       !Object.values({ ...selected, [index]: undefined }).includes(ability)
   );
+
+  console.log({ group, current, index, selected });
 
   return (
     <li className="list-group-item">
@@ -41,7 +43,7 @@ export default props => {
             className="btn btn-outline-dark btn-sm dropdown-toggle"
             label={current}
           >
-            {options.map(option => (
+            {options.map((option) => (
               <button
                 className="dropdown-item"
                 key={option}

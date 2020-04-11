@@ -23,7 +23,11 @@ export const STAGE_HERITAGE_DATA = {
 };
 
 export const STAGE_BACKGROUND = "Background";
-export const STAGE_BACKGROUND_DATA = { name: STAGE_BACKGROUND };
+export const STEP_BACKGROUND_ABILITIES = "Background Ability Boosts";
+export const STAGE_BACKGROUND_DATA = {
+  name: STAGE_BACKGROUND,
+  steps: [{ name: STAGE_BACKGROUND }, { name: STEP_BACKGROUND_ABILITIES }],
+};
 
 export const stages = [
   STAGE_ANCESTRY_DATA,
@@ -34,6 +38,7 @@ export const stages = [
 export const stageObj = {
   [STAGE_ANCESTRY]: STAGE_ANCESTRY_DATA,
   [STAGE_HERITAGE]: STAGE_HERITAGE_DATA,
+  [STAGE_BACKGROUND]: STAGE_BACKGROUND_DATA,
 };
 
 export const defaultAttributes = {
