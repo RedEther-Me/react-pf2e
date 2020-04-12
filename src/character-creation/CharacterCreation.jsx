@@ -18,6 +18,10 @@ import {
   STAGE_BACKGROUND_DATA,
   STAGE_CLASS,
   STAGE_CLASS_DATA,
+  STAGE_ABILITIES,
+  STAGE_ABILITIES_DATA,
+  STAGE_EQUIPMENT,
+  STAGE_EQUIPMENT_DATA,
 } from "./constants";
 import creationReducer, { initialState } from "./creationReducer";
 
@@ -30,7 +34,11 @@ const mapComponent = (stepName) => {
     case STAGE_BACKGROUND:
       return [STAGE_BACKGROUND_DATA.steps, BackgroundStage, STAGE_CLASS];
     case STAGE_CLASS:
-      return [STAGE_CLASS_DATA.steps, ClassStage, ""];
+      return [STAGE_CLASS_DATA.steps, ClassStage, STAGE_ABILITIES];
+    case STAGE_ABILITIES:
+      return [STAGE_ABILITIES_DATA.steps, () => null, STAGE_EQUIPMENT];
+    case STAGE_EQUIPMENT:
+      return [STAGE_EQUIPMENT_DATA.steps, () => null, ""];
     default:
       return [];
   }

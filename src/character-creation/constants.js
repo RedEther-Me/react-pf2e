@@ -36,19 +36,31 @@ export const STAGE_CLASS_DATA = {
   steps: [{ name: STAGE_CLASS }, { name: STEP_CLASS_SKILLS }],
 };
 
+export const STAGE_ABILITIES = "Free Abilities";
+export const STAGE_ABILITIES_DATA = {
+  name: STAGE_ABILITIES,
+  steps: [{ name: STAGE_ABILITIES }],
+};
+
+export const STAGE_EQUIPMENT = "Equipment";
+export const STAGE_EQUIPMENT_DATA = {
+  name: STAGE_EQUIPMENT,
+  steps: [{ name: STAGE_EQUIPMENT }],
+};
+
 export const stages = [
   STAGE_ANCESTRY_DATA,
   STAGE_HERITAGE_DATA,
   STAGE_BACKGROUND_DATA,
   STAGE_CLASS_DATA,
+  STAGE_ABILITIES_DATA,
+  STAGE_EQUIPMENT_DATA,
 ];
 
-export const stageObj = {
-  [STAGE_ANCESTRY]: STAGE_ANCESTRY_DATA,
-  [STAGE_HERITAGE]: STAGE_HERITAGE_DATA,
-  [STAGE_BACKGROUND]: STAGE_BACKGROUND_DATA,
-  [STAGE_CLASS]: STAGE_CLASS_DATA,
-};
+export const stageObj = stages.reduce(
+  (acc, stage) => ({ ...acc, [stage.name]: stage }),
+  {}
+);
 
 export const defaultAttributes = {
   [STRENGTH]: 10,

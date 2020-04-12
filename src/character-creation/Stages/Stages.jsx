@@ -11,7 +11,7 @@ export default (props) => {
 
   return (
     <Card className="mt-3">
-      <div className="btn-group">
+      <div className="list-group list-group-horizontal">
         {stages.map((stage) => (
           <Stage key={stage.name} {...{ stage, state }} />
         ))}
