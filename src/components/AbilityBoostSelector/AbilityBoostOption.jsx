@@ -28,8 +28,6 @@ export default (props) => {
       !Object.values({ ...selected, [index]: undefined }).includes(ability)
   );
 
-  console.log({ group, current, index, selected });
-
   return (
     <li className="list-group-item">
       <Row>

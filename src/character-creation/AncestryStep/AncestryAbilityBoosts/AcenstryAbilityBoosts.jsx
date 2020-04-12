@@ -20,10 +20,9 @@ export default (props) => {
 
   const {
     [STAGE_ANCESTRY]: ancestry,
-    [STEP_ANCESTRY_ABILITIES]: ability_boosts,
+    [STEP_ANCESTRY_ABILITIES]: selected = {},
   } = state.choices;
   const groups = ancestry ? ancestry.ability_boosts : [];
-  const selected = ability_boosts ? ability_boosts : {};
 
   const isValid = groups.every((group, index) => {
     return typeof group === "string" || index in selected;
@@ -37,7 +36,7 @@ export default (props) => {
     dispatch(
       makeSelection({
         key: STEP_ANCESTRY_ABILITIES,
-        value: { [index]: option },
+        value: { ...selected, [index]: option },
       })
     );
 

@@ -6,14 +6,14 @@ import { SKILL_LIST } from "../../data/skills";
 import SkillsSelectionOption from "./SkillsSelectionOption";
 
 import { nextStep } from "../creationActions";
-import { STAGE_CLASS, STEP_CLASS_SKILLS } from "../constants";
+import { STAGE_SKILLS } from "../constants";
 
 export default (props) => {
   const { state, dispatch } = props;
 
-  const isValid = STAGE_CLASS in state.choices && !state.preview.skills.free;
+  const isValid = STAGE_SKILLS in state.choices && !state.preview.skills.free;
 
-  const header = <CardHeader label="Class Selection" isValid={isValid} />;
+  const header = <CardHeader label="Skill Selection" isValid={isValid} />;
 
   return (
     <Card header={header} fullHeight>

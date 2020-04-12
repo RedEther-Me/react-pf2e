@@ -31,7 +31,7 @@ export default (props) => {
           </div>
         </Col>
       </Row>
-      <Row className="mt-2">
+      {/* <Row className="mt-2">
         <Col>
           <button
             className="btn btn-primary"
@@ -41,7 +41,7 @@ export default (props) => {
             Continue
           </button>
         </Col>
-      </Row>
+      </Row> */}
     </Card>
   );
 };

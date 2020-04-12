@@ -1,34 +1,49 @@
 import React from "react";
 
 import { Card, CardHeader, AbilityBoostSelector } from "../../../components";
+import abilities from "../../../data/abilities";
 
+import { STAGE_ABILITY_SCORES } from "../../constants";
 import { makeSelection } from "../../creationActions";
-import { STEP_BACKGROUND, STEP_BACKGROUND_ABILITIES } from "../../constants";
+
+const {
+  STRENGTH,
+  DEXTERITY,
+  CONSTITUTION,
+  INTELLIGENCE,
+  WISDOM,
+  CHARISMA,
+} = abilities;
+
+const singleGroup = [
+  STRENGTH,
+  DEXTERITY,
+  CONSTITUTION,
+  INTELLIGENCE,
+  WISDOM,
+  CHARISMA,
+];
+
+const groups = [singleGroup, singleGroup, singleGroup, singleGroup];
 
 export default (props) => {
   const { state, dispatch } = props;
 
-  const {
-    [STEP_BACKGROUND]: background,
-    [STEP_BACKGROUND_ABILITIES]: selected = {},
-  } = state.choices;
-  const groups = background ? background.ability_boosts : [];
+  const { [STAGE_ABILITY_SCORES]: selected = {} } = state.choices;
 
   const isValid = groups.every((group, index) => {
     return typeof group === "string" || index in selected;
   });
 
-  const header = (
-    <CardHeader label="Background Ability Boosts" isValid={isValid} />
-  );
-
   const selectAction = ({ option, index }) =>
     dispatch(
       makeSelection({
-        key: STEP_BACKGROUND_ABILITIES,
+        key: STAGE_ABILITY_SCORES,
         value: { ...selected, [index]: option },
       })
     );
+
+  const header = <CardHeader label="Free Ability Boosts" isValid={isValid} />;
 
   return (
     <Card header={header} fullHeight>

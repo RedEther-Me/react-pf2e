@@ -15,7 +15,7 @@ export default (props) => {
         "list-group-item-dark": !isEnabled,
       })}
     >
-      {stage.name}
+      {stage.description}
     </button>
   );
 };

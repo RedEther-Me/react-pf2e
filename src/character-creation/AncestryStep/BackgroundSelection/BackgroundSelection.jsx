@@ -13,7 +13,7 @@ export default (props) => {
 
   const isValid = STEP_BACKGROUND in state.choices;
 
-  const header = <CardHeader label="Ancestry Selection" isValid={isValid} />;
+  const header = <CardHeader label="Background Selection" isValid={isValid} />;
 
   return (
     <Card header={header} fullHeight>

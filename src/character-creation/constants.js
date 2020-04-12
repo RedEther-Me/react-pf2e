@@ -31,14 +31,14 @@ export const STEP_CLASS_SKILLS = "Class Skills";
 export const STAGE_CLASS_DATA = {
   name: STAGE_CLASS,
   description: "Class",
-  steps: [{ name: STAGE_CLASS }, { name: STEP_CLASS_SKILLS }],
+  steps: [{ name: STAGE_CLASS }],
 };
 
-export const STAGE_ABILITIES = "Free Abilities";
-export const STAGE_ABILITIES_DATA = {
-  name: STAGE_ABILITIES,
-  description: "Free Ability Boosts",
-  steps: [{ name: STAGE_ABILITIES }],
+export const STAGE_ABILITY_SCORES = "Abilities Scores";
+export const STAGE_ABILITY_SCORES_DATA = {
+  name: STAGE_ABILITY_SCORES,
+  description: "Ability Boosts",
+  steps: [{ name: STAGE_ABILITY_SCORES }],
 };
 
 export const STAGE_SKILLS = "Skills";
@@ -58,7 +58,7 @@ export const STAGE_EQUIPMENT_DATA = {
 export const stages = [
   STAGE_ANCESTRY_DATA,
   STAGE_CLASS_DATA,
-  STAGE_ABILITIES_DATA,
+  STAGE_ABILITY_SCORES_DATA,
   STAGE_SKILLS_DATA,
   STAGE_EQUIPMENT_DATA,
 ];

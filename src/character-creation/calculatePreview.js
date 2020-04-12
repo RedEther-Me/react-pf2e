@@ -6,7 +6,8 @@ import {
   STEP_BACKGROUND,
   STEP_BACKGROUND_ABILITIES,
   STAGE_CLASS,
-  STEP_CLASS_SKILLS,
+  STAGE_ABILITY_SCORES,
+  STAGE_SKILLS,
 } from "./constants";
 
 import { SKILL_MAP } from "../data/skills";
@@ -109,7 +110,8 @@ const stepMap = {
   [STEP_BACKGROUND]: combine(combineSkills, combineFeats),
   [STEP_BACKGROUND_ABILITIES]: combine(combineAbilityPicker),
   [STAGE_CLASS]: combine(combineAbility, combineSkills),
-  [STEP_CLASS_SKILLS]: combine(combineSkills),
+  [STAGE_ABILITY_SCORES]: combine(combineAbilityPicker),
+  [STAGE_SKILLS]: combine(combineSkills),
 };
 
 export const calculateState = (order, choices) => {
