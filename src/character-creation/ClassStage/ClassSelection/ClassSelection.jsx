@@ -6,7 +6,7 @@ import { classes } from "../../../data";
 import ClassSelectionOption from "./ClassSelectionOption";
 
 import { nextStep } from "../../creationActions";
-import { STAGE_CLASS, STEP_CLASS_SKILLS } from "../../constants";
+import { STAGE_CLASS } from "../../constants";
 
 export default (props) => {
   const { state, dispatch } = props;

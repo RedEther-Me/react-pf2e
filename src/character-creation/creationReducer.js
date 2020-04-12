@@ -43,12 +43,13 @@ export default (state, action) => {
       return Immutable.merge(state, updates);
     }
     case NEXT_STEP: {
+      const isPresent = state.order.includes(action.step);
       const updates = {
-        order: [...state.order, action.step],
+        order: !isPresent ? [...state.order, action.step] : state.order,
         currentStep: action.step,
       };
 
-      return Immutable.merge(state, updates, { deep: true });
+      return Immutable.merge(state, updates);
     }
     case SAVE_AND_CONTINUE: {
       const { nextStep } = action;

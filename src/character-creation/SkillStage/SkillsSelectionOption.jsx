@@ -4,19 +4,19 @@ import classnames from "classnames";
 import { TRAINED } from "../../data/proficiencies";
 
 import { makeSelection } from "../creationActions";
-import { STEP_CLASS_SKILLS } from "../constants";
+import { STAGE_SKILLS } from "../constants";
 
 export default (props) => {
   const { skill, state, dispatch } = props;
   const { [skill.name]: curentSkill, free = 0, ...selectedSkills } =
-    state.choices[STEP_CLASS_SKILLS]?.skills || {};
+    state.choices[STAGE_SKILLS]?.skills || {};
   const isTrained = skill.name in state.preview.skills;
   const isSelected = !!curentSkill;
 
   const onClassClick = () => {
     dispatch(
       makeSelection({
-        key: STEP_CLASS_SKILLS,
+        key: STAGE_SKILLS,
         value: {
           skills: {
             ...selectedSkills,
