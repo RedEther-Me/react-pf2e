@@ -1,10 +1,10 @@
 import React from "react";
 import classnames from "classnames";
 
-import { TRAINED } from "../../../data/proficiencies";
+import { TRAINED } from "../../data/proficiencies";
 
-import { makeSelection } from "../../creationActions";
-import { STEP_CLASS_SKILLS } from "../../constants";
+import { makeSelection } from "../creationActions";
+import { STEP_CLASS_SKILLS } from "../constants";
 
 export default (props) => {
   const { skill, state, dispatch } = props;

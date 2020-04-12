@@ -6,6 +6,7 @@ import Steps from "./Steps";
 import Stages from "./Stages";
 import AncestryStep from "./AncestryStep";
 import ClassStage from "./ClassStage";
+import SkillStage from "./SkillStage";
 
 import {
   STAGE_ANCESTRY,
@@ -14,6 +15,8 @@ import {
   STAGE_CLASS_DATA,
   STAGE_ABILITIES,
   STAGE_ABILITIES_DATA,
+  STAGE_SKILLS,
+  STAGE_SKILLS_DATA,
   STAGE_EQUIPMENT,
   STAGE_EQUIPMENT_DATA,
 } from "./constants";
@@ -26,7 +29,9 @@ const mapComponent = (stepName) => {
     case STAGE_CLASS:
       return [STAGE_CLASS_DATA.steps, ClassStage, STAGE_ABILITIES];
     case STAGE_ABILITIES:
-      return [STAGE_ABILITIES_DATA.steps, () => null, STAGE_EQUIPMENT];
+      return [STAGE_ABILITIES_DATA.steps, () => null, STAGE_SKILLS];
+    case STAGE_SKILLS:
+      return [STAGE_SKILLS_DATA.steps, SkillStage, STAGE_EQUIPMENT];
     case STAGE_EQUIPMENT:
       return [STAGE_EQUIPMENT_DATA.steps, () => null, ""];
     default:

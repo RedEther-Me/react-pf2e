@@ -1,12 +1,12 @@
 import React from "react";
 
-import { Card, CardHeader, Row, Col } from "../../../components";
-import { SKILL_LIST } from "../../../data/skills";
+import { Card, CardHeader, Row, Col } from "../../components";
+import { SKILL_LIST } from "../../data/skills";
 
-import ClassSkillsSelectionOption from "./ClassSkillsSelectionOption";
+import SkillsSelectionOption from "./SkillsSelectionOption";
 
-import { nextStep } from "../../creationActions";
-import { STAGE_CLASS, STEP_CLASS_SKILLS } from "../../constants";
+import { nextStep } from "../creationActions";
+import { STAGE_CLASS, STEP_CLASS_SKILLS } from "../constants";
 
 export default (props) => {
   const { state, dispatch } = props;
@@ -22,7 +22,7 @@ export default (props) => {
           <div className="list-group">
             {SKILL_LIST.map((skill) => {
               return (
-                <ClassSkillsSelectionOption
+                <SkillsSelectionOption
                   {...{ skill, state, dispatch }}
                   key={skill.name}
                 />
