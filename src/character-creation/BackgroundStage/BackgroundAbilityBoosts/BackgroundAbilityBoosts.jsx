@@ -27,7 +27,7 @@ export default (props) => {
     dispatch(
       makeSelection({
         key: STEP_BACKGROUND_ABILITIES,
-        value: { [index]: option },
+        value: { ...ability_boosts, [index]: option },
       })
     );
 

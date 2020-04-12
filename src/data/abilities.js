@@ -14,8 +14,4 @@ export default {
   CHARISMA,
 
   list: [STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA],
-
-  // Special
-  FREE_1: "free-1",
-  FREE_2: "free-2"
 };

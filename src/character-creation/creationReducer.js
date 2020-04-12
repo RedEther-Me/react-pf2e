@@ -40,7 +40,7 @@ export default (state, action) => {
         preview,
       };
 
-      return Immutable.merge(state, updates, { deep: true });
+      return Immutable.merge(state, updates);
     }
     case NEXT_STEP: {
       const updates = {
@@ -62,7 +62,7 @@ export default (state, action) => {
         order: [...state.order, nextStep],
       };
 
-      return Immutable.merge(state, updates, { deep: true });
+      return Immutable.merge(state, updates);
     }
     default:
       return state;

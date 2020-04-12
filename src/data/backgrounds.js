@@ -1,4 +1,6 @@
 import ABILITIES from "./abilities";
+import { TRAINED } from "./proficiencies";
+import { CRAFTING, LORE, RELIGION } from "./skills";
 
 const {
   STRENGTH,
@@ -19,8 +21,8 @@ const ACOLYTE_DATA = {
     [STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA],
   ],
   skills: {
-    crafting: "TRAINED",
-    engineering_lore: "TRAINED",
+    [CRAFTING]: TRAINED,
+    [LORE]: { sub: "Engineering", level: TRAINED },
   },
   feats: ["Assurance"],
 };
@@ -35,8 +37,8 @@ const TINKER_DATA = {
     [STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA],
   ],
   skills: {
-    religion: "TRAINED",
-    scribe_lore: "TRAINED",
+    [RELIGION]: TRAINED,
+    [LORE]: { sub: "Scribe", level: TRAINED },
   },
   feats: ["Student of the Canon"],
 };

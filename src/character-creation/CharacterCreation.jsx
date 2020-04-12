@@ -7,6 +7,7 @@ import Stages from "./Stages";
 import AncestryStep from "./AncestryStep";
 import HeritageStage from "./HeritageStage";
 import BackgroundStage from "./BackgroundStage";
+import ClassStage from "./ClassStage";
 
 import {
   STAGE_ANCESTRY,
@@ -15,6 +16,8 @@ import {
   STAGE_HERITAGE_DATA,
   STAGE_BACKGROUND,
   STAGE_BACKGROUND_DATA,
+  STAGE_CLASS,
+  STAGE_CLASS_DATA,
 } from "./constants";
 import creationReducer, { initialState } from "./creationReducer";
 
@@ -25,7 +28,9 @@ const mapComponent = (stepName) => {
     case STAGE_HERITAGE:
       return [STAGE_HERITAGE_DATA.steps, HeritageStage, STAGE_BACKGROUND];
     case STAGE_BACKGROUND:
-      return [STAGE_BACKGROUND_DATA.steps, BackgroundStage, ""];
+      return [STAGE_BACKGROUND_DATA.steps, BackgroundStage, STAGE_CLASS];
+    case STAGE_CLASS:
+      return [STAGE_CLASS_DATA.steps, ClassStage, ""];
     default:
       return [];
   }

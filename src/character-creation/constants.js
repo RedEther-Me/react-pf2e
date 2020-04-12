@@ -29,16 +29,25 @@ export const STAGE_BACKGROUND_DATA = {
   steps: [{ name: STAGE_BACKGROUND }, { name: STEP_BACKGROUND_ABILITIES }],
 };
 
+export const STAGE_CLASS = "Class";
+export const STEP_CLASS_SKILLS = "Class Skills";
+export const STAGE_CLASS_DATA = {
+  name: STAGE_CLASS,
+  steps: [{ name: STAGE_CLASS }, { name: STEP_CLASS_SKILLS }],
+};
+
 export const stages = [
   STAGE_ANCESTRY_DATA,
   STAGE_HERITAGE_DATA,
   STAGE_BACKGROUND_DATA,
+  STAGE_CLASS_DATA,
 ];
 
 export const stageObj = {
   [STAGE_ANCESTRY]: STAGE_ANCESTRY_DATA,
   [STAGE_HERITAGE]: STAGE_HERITAGE_DATA,
   [STAGE_BACKGROUND]: STAGE_BACKGROUND_DATA,
+  [STAGE_CLASS]: STAGE_CLASS_DATA,
 };
 
 export const defaultAttributes = {
