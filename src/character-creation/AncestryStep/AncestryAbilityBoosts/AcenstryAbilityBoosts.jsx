@@ -1,9 +1,19 @@
 import React from "react";
 
-import { Card, CardHeader, AbilityBoostSelector } from "../../../components";
+import {
+  Card,
+  CardHeader,
+  Row,
+  Col,
+  AbilityBoostSelector,
+} from "../../../components";
 
-import { makeSelection } from "../../creationActions";
-import { STAGE_ANCESTRY, STEP_ANCESTRY_ABILITIES } from "../../creationReducer";
+import { makeSelection, nextStep } from "../../creationActions";
+import {
+  STAGE_ANCESTRY,
+  STEP_ANCESTRY_ABILITIES,
+  STEP_HERITAGE,
+} from "../../creationReducer";
 
 export default (props) => {
   const { state, dispatch } = props;
@@ -34,6 +44,17 @@ export default (props) => {
   return (
     <Card header={header} fullHeight>
       <AbilityBoostSelector {...{ groups, selected, selectAction }} />
+      <Row className="mt-2">
+        <Col>
+          <button
+            className="btn btn-primary"
+            disabled={!isValid}
+            onClick={() => dispatch(nextStep({ step: STEP_HERITAGE }))}
+          >
+            Continue
+          </button>
+        </Col>
+      </Row>
     </Card>
   );
 };

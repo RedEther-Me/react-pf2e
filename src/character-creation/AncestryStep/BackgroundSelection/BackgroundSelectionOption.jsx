@@ -2,14 +2,14 @@ import React from "react";
 import classnames from "classnames";
 
 import { makeSelection } from "../../creationActions";
-import { STAGE_BACKGROUND } from "../../constants";
+import { STEP_BACKGROUND } from "../../constants";
 
 export default (props) => {
   const { background, state, dispatch } = props;
-  const selectedBackground = state.choices[STAGE_BACKGROUND];
+  const selectedBackground = state.choices[STEP_BACKGROUND];
 
   const onBackgroundClick = () => {
-    dispatch(makeSelection({ key: STAGE_BACKGROUND, value: background }));
+    dispatch(makeSelection({ key: STEP_BACKGROUND, value: background }));
   };
 
   return (

@@ -1,15 +1,15 @@
 import React from "react";
 import classnames from "classnames";
 
-import { makeSelection } from "../creationActions";
-import { STAGE_HERITAGE } from "../creationReducer";
+import { makeSelection } from "../../creationActions";
+import { STEP_HERITAGE } from "../../creationReducer";
 
 export default (props) => {
   const { heritage, state, dispatch } = props;
-  const selectedHeritage = state.choices[STAGE_HERITAGE];
+  const selectedHeritage = state.choices[STEP_HERITAGE];
 
   const onHeritageClick = () => {
-    dispatch(makeSelection({ key: STAGE_HERITAGE, value: heritage }));
+    dispatch(makeSelection({ key: STEP_HERITAGE, value: heritage }));
   };
 
   return (

@@ -3,13 +3,13 @@ import React from "react";
 import { Card, CardHeader, AbilityBoostSelector } from "../../../components";
 
 import { makeSelection } from "../../creationActions";
-import { STAGE_BACKGROUND, STEP_BACKGROUND_ABILITIES } from "../../constants";
+import { STEP_BACKGROUND, STEP_BACKGROUND_ABILITIES } from "../../constants";
 
 export default (props) => {
   const { state, dispatch } = props;
 
   const {
-    [STAGE_BACKGROUND]: background,
+    [STEP_BACKGROUND]: background,
     [STEP_BACKGROUND_ABILITIES]: ability_boosts,
   } = state.choices;
   const groups = background ? background.ability_boosts : [];

@@ -6,12 +6,12 @@ import { backgrounds } from "../../../data";
 import BackgroundSelectionOption from "./BackgroundSelectionOption";
 
 import { nextStep } from "../../creationActions";
-import { STAGE_BACKGROUND, STEP_BACKGROUND_ABILITIES } from "../../constants";
+import { STEP_BACKGROUND, STEP_BACKGROUND_ABILITIES } from "../../constants";
 
 export default (props) => {
   const { state, dispatch } = props;
 
-  const isValid = STAGE_BACKGROUND in state.choices;
+  const isValid = STEP_BACKGROUND in state.choices;
 
   const header = <CardHeader label="Ancestry Selection" isValid={isValid} />;
 

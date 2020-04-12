@@ -1,10 +1,18 @@
 import React from "react";
 
-import { Row, Col } from "../../components";
-
 import AncestrySelection from "./AncestrySelection";
 import AncestryAbilityBoosts from "./AncestryAbilityBoosts";
-import { STAGE_ANCESTRY, STEP_ANCESTRY_ABILITIES } from "../creationReducer";
+import HeritageSelection from "./HeritageStage";
+import BackgroundSelection from "./BackgroundSelection";
+import BackgroundAbilityBoosts from "./BackgroundAbilityBoosts";
+
+import {
+  STAGE_ANCESTRY,
+  STEP_ANCESTRY_ABILITIES,
+  STEP_HERITAGE,
+  STEP_BACKGROUND,
+  STEP_BACKGROUND_ABILITIES,
+} from "../constants";
 
 const mapComponent = ({ state, dispatch }) => {
   switch (state.currentStep) {
@@ -13,6 +21,15 @@ const mapComponent = ({ state, dispatch }) => {
     }
     case STEP_ANCESTRY_ABILITIES: {
       return <AncestryAbilityBoosts {...{ state, dispatch }} />;
+    }
+    case STEP_HERITAGE: {
+      return <HeritageSelection {...{ state, dispatch }} />;
+    }
+    case STEP_BACKGROUND: {
+      return <BackgroundSelection {...{ state, dispatch }} />;
+    }
+    case STEP_BACKGROUND_ABILITIES: {
+      return <BackgroundAbilityBoosts {...{ state, dispatch }} />;
     }
     default:
       return null;
