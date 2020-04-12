@@ -69,10 +69,10 @@ export const stageObj = stages.reduce(
 );
 
 export const defaultAttributes = {
-  [STRENGTH]: 10,
-  [DEXTERITY]: 10,
-  [CONSTITUTION]: 10,
-  [INTELLIGENCE]: 10,
-  [WISDOM]: 10,
-  [CHARISMA]: 10,
+  [STRENGTH]: { value: 10, mod: 0 },
+  [DEXTERITY]: { value: 10, mod: 0 },
+  [CONSTITUTION]: { value: 10, mod: 0 },
+  [INTELLIGENCE]: { value: 10, mod: 0 },
+  [WISDOM]: { value: 10, mod: 0 },
+  [CHARISMA]: { value: 10, mod: 0 },
 };

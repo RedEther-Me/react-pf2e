@@ -11,11 +11,18 @@ import {
 } from "./constants";
 
 import { SKILL_MAP } from "../data/skills";
+import abilities from "../data/abilities";
+import calcMod from "../utils/calcMod";
+
+const { INTELLIGENCE } = abilities;
 
 const modifyAbilityScore = (preview, ability, amount) => {
+  const { value } = preview[ability];
+  const total = value + amount;
+
   return {
     ...preview,
-    [ability]: preview[ability] + amount,
+    [ability]: { value: total, mod: calcMod(total) },
   };
 };
 
@@ -98,6 +105,19 @@ const combineAncestry = (acc, choice) => {
   return { ...acc, preview: withFlaw };
 };
 
+const combineIntSkills = (acc) => {
+  const { [INTELLIGENCE]: intelligence } = acc.preview;
+  const { mod: intMod } = intelligence;
+
+  return {
+    ...acc,
+    preview: {
+      ...acc.preview,
+      skills: { ...acc.preview.skills, free: acc.preview.skills.free + intMod },
+    },
+  };
+};
+
 const stepMap = {
   [STAGE_ANCESTRY]: combine(
     combineTraits,
@@ -111,7 +131,7 @@ const stepMap = {
   [STEP_BACKGROUND_ABILITIES]: combine(combineAbilityPicker),
   [STAGE_CLASS]: combine(combineAbility, combineSkills),
   [STAGE_ABILITY_SCORES]: combine(combineAbilityPicker),
-  [STAGE_SKILLS]: combine(combineSkills),
+  [STAGE_SKILLS]: combine(combineIntSkills, combineSkills),
 };
 
 export const calculateState = (order, choices) => {
