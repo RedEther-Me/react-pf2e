@@ -4,7 +4,7 @@ import { Card, SelectionLayout } from "../components";
 
 import Steps from "./Steps";
 import Stages from "./Stages";
-import AncestryStep from "./AncestryStep";
+import AncestryStage from "./AncestryStage";
 import ClassStage from "./ClassStage";
 import AbilityScoresStage from "./AbilityScoresStage";
 import SkillStage from "./SkillStage";
@@ -26,7 +26,7 @@ import creationReducer, { initialState } from "./creationReducer";
 const mapComponent = (stepName) => {
   switch (stepName) {
     case STAGE_ANCESTRY:
-      return [STAGE_ANCESTRY_DATA.steps, AncestryStep, STAGE_CLASS];
+      return [STAGE_ANCESTRY_DATA.steps, AncestryStage, STAGE_CLASS];
     case STAGE_CLASS:
       return [STAGE_CLASS_DATA.steps, ClassStage, STAGE_ABILITY_SCORES];
     case STAGE_ABILITY_SCORES:

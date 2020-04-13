@@ -36,8 +36,8 @@ const mapComponent = ({ state, dispatch }) => {
   }
 };
 
-const AncestryStep = (props) => {
+const AncestryStage = (props) => {
   return mapComponent(props);
 };
 
-export default AncestryStep;
+export default AncestryStage;
