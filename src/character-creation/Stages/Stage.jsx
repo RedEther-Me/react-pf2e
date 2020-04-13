@@ -1,8 +1,10 @@
 import React from "react";
 import classnames from "classnames";
 
+import { switchStage } from "../creationActions";
+
 export default (props) => {
-  const { stage, state } = props;
+  const { stage, state, dispatch } = props;
   const isActive = state.currentStage === stage.name;
   const isEnabled = state.order.includes(stage.name);
 
@@ -14,6 +16,11 @@ export default (props) => {
         "list-group-item-primary": isEnabled,
         "list-group-item-dark": !isEnabled,
       })}
+      onClick={() => {
+        if (isEnabled && !isActive) {
+          dispatch(switchStage({ stage: stage.name }));
+        }
+      }}
     >
       {stage.description}
     </button>

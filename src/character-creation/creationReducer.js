@@ -2,6 +2,7 @@ import {
   MAKE_SELECTION,
   SAVE_AND_CONTINUE,
   NEXT_STEP,
+  SWITCH_STAGE,
 } from "./creationActions";
 
 import { STAGE_ANCESTRY, defaultAttributes, stageObj } from "./constants";
@@ -64,6 +65,16 @@ export default (state, action) => {
       };
 
       return Immutable.merge(state, updates);
+    }
+    case SWITCH_STAGE: {
+      const { stage } = action;
+      console.log(action, stageObj);
+      const firstStep = stageObj[stage].name;
+
+      return Immutable.merge(state, {
+        currentStage: stage,
+        currentStep: firstStep,
+      });
     }
     default:
       return state;

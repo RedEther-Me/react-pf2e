@@ -17,22 +17,12 @@ export const nextStep = ({ type, step }) => {
   };
 };
 
-// export const SWITCH_ANCESTRY = "SWITCH_ANCESTRY";
+export const SWITCH_STAGE = "SWITCH_STAGE";
 
-// export const switchAncestry = ({ type, ancestry }) => {
-//   return {
-//     type: SWITCH_ANCESTRY,
-//     ancestry,
-//   };
-// };
-
-export const SELECT_ABILITY_BOOST = "SELECT_ABILITY_BOOST";
-
-export const selectAbilityBoost = ({ type, option, index }) => {
+export const switchStage = ({ type, stage }) => {
   return {
-    type: SELECT_ABILITY_BOOST,
-    option,
-    index,
+    type: SWITCH_STAGE,
+    stage,
   };
 };
 
