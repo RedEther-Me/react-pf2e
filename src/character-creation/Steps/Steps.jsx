@@ -6,14 +6,18 @@ import Step from "./Step";
 import { saveAndContinue } from "../creationActions";
 
 export default (props) => {
-  const { steps, state, dispatch, nextStage } = props;
+  const { state, dispatch, nextStage } = props;
+
+  const { steps } = state.stages[state.currentStage];
 
   return (
     <Card fullHeight>
       <ul className="list-group">
-        {steps.map((step) => (
-          <Step key={step.name} {...{ step, state, dispatch }} />
-        ))}
+        {steps
+          .filter((step) => step.visible)
+          .map((step) => (
+            <Step key={step.name} {...{ step, state, dispatch }} />
+          ))}
       </ul>
       <Row className="mt-2">
         <Col>

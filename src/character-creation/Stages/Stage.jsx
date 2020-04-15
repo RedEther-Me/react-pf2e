@@ -6,7 +6,7 @@ import { switchStage } from "../creationActions";
 export default (props) => {
   const { stage, state, dispatch } = props;
   const isActive = state.currentStage === stage.name;
-  const isEnabled = state.order.includes(stage.name);
+  const { enabled: isEnabled } = stage;
 
   return (
     <button

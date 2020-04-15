@@ -7,16 +7,16 @@ import BackgroundSelection from "./BackgroundSelection";
 import BackgroundAbilityBoosts from "./BackgroundAbilityBoosts";
 
 import {
-  STAGE_ANCESTRY,
   STEP_ANCESTRY_ABILITIES,
   STEP_HERITAGE,
   STEP_BACKGROUND,
   STEP_BACKGROUND_ABILITIES,
+  STEP_SELECT_ANCESTRY,
 } from "../constants";
 
 const mapComponent = ({ state, dispatch }) => {
   switch (state.currentStep) {
-    case STAGE_ANCESTRY: {
+    case STEP_SELECT_ANCESTRY: {
       return <AncestrySelection {...{ state, dispatch }} />;
     }
     case STEP_ANCESTRY_ABILITIES: {

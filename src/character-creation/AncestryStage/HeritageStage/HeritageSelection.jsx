@@ -6,7 +6,7 @@ import HeritageSelectionOption from "./HeritageSelectionOption";
 
 import { nextStep } from "../../creationActions";
 import {
-  STAGE_ANCESTRY,
+  STEP_SELECT_ANCESTRY,
   STEP_HERITAGE,
   STEP_BACKGROUND,
 } from "../../creationReducer";
@@ -16,7 +16,7 @@ export default (props) => {
 
   const isValid = STEP_HERITAGE in state.choices;
 
-  const { heritages } = state.choices[STAGE_ANCESTRY];
+  const { heritages } = state.choices[STEP_SELECT_ANCESTRY];
 
   const header = <CardHeader label="Heritage Selection" isValid={isValid} />;
 

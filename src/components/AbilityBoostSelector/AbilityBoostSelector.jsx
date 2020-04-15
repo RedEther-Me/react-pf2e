@@ -2,7 +2,7 @@ import React from "react";
 
 import AbilityBoostOption from "./AbilityBoostOption";
 
-export default props => {
+const AbilityBoost = (props) => {
   const { groups, selected, selectAction } = props;
 
   return (
@@ -18,3 +18,5 @@ export default props => {
     </ul>
   );
 };
+
+export default AbilityBoost;

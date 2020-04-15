@@ -1,6 +1,6 @@
 import {
   defaultAttributes,
-  STAGE_ANCESTRY,
+  STEP_SELECT_ANCESTRY,
   STEP_ANCESTRY_ABILITIES,
   STEP_HERITAGE,
   STEP_BACKGROUND,
@@ -92,6 +92,14 @@ const combineSkills = (acc, choice) => {
 
 const combineFeats = (acc, choice) => acc;
 
+const combineOrder = (field, name) => (acc, choice) => {
+  if (field in choice) {
+    console.log(field, name, acc.order);
+  }
+
+  return acc;
+};
+
 const combine = (...processes) => {
   return (acc, choice) => {
     return processes.reduce((acc, process) => process(acc, choice), acc);
@@ -119,7 +127,7 @@ const combineIntSkills = (acc) => {
 };
 
 const stepMap = {
-  [STAGE_ANCESTRY]: combine(
+  [STEP_SELECT_ANCESTRY]: combine(
     combineTraits,
     combineState,
     combineAbility,
@@ -127,14 +135,23 @@ const stepMap = {
   ),
   [STEP_ANCESTRY_ABILITIES]: combine(combineAbilityPicker),
   [STEP_HERITAGE]: combine(combineState),
-  [STEP_BACKGROUND]: combine(combineSkills, combineFeats),
+  [STEP_BACKGROUND]: combine(
+    combineSkills,
+    combineFeats,
+    combineOrder("pick_skill", "Background Skill Option")
+  ),
   [STEP_BACKGROUND_ABILITIES]: combine(combineAbilityPicker),
   [STAGE_CLASS]: combine(combineAbility, combineSkills),
   [STAGE_ABILITY_SCORES]: combine(combineAbilityPicker),
   [STAGE_SKILLS]: combine(combineIntSkills, combineSkills),
 };
 
-export const calculateState = (order, choices) => {
+export const calculateState = (stages, choices) => {
+  const order = Object.values(stages)
+    .reduce((acc, stage) => [...acc, ...stage.steps], [])
+    .filter((step) => step.enabled)
+    .map((step) => step.name);
+
   return order.reduce(
     (acc, step) => {
       const choice = choices[step];
@@ -146,6 +163,10 @@ export const calculateState = (order, choices) => {
       const lookup = stepMap[step];
       return lookup(acc, choice);
     },
-    { traits: [], preview: { ...defaultAttributes, skills: { free: 0 } } }
+    {
+      order,
+      traits: [],
+      preview: { ...defaultAttributes, skills: { free: 0 } },
+    }
   );
 };

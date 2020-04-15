@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Card, CardHeader, Row, Col } from "../../../components";
-import { backgrounds } from "../../../data";
+import { BACKGROUND_LIST } from "../../../data/backgrounds";
 
 import BackgroundSelectionOption from "./BackgroundSelectionOption";
 
@@ -20,7 +20,7 @@ export default (props) => {
       <Row>
         <Col>
           <div className="list-group">
-            {backgrounds.list.map((background) => {
+            {BACKGROUND_LIST.map((background) => {
               return (
                 <BackgroundSelectionOption
                   {...{ background, state, dispatch }}

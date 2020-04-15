@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
 
-export default ({ to, className, ...props }) => {
+const LinkButton = ({ to, className, ...props }) => {
   if (props.disabled) {
     return (
       <button className={classnames(className, "disabled")} {...props}>
@@ -19,3 +19,5 @@ export default ({ to, className, ...props }) => {
     </Link>
   );
 };
+
+export default LinkButton;

@@ -6,7 +6,7 @@ import { nextStep } from "../creationActions";
 export default (props) => {
   const { step, state, dispatch } = props;
   const isActive = state.currentStep === step.name;
-  const isEnabled = state.order.includes(step.name);
+  const { enabled: isEnabled } = step;
 
   return (
     <li

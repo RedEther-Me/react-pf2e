@@ -1,17 +1,17 @@
 import React from "react";
 
 import { Card, CardHeader, Row, Col } from "../../../components";
-import { ancestries } from "../../../data";
+import ancestries from "../../../data/ancestries";
 
 import AncestrySelectionOption from "./AncestrySelectionOption";
 
 import { nextStep } from "../../creationActions";
-import { STAGE_ANCESTRY, STEP_ANCESTRY_ABILITIES } from "../../creationReducer";
+import { STEP_SELECT_ANCESTRY, STEP_ANCESTRY_ABILITIES } from "../../constants";
 
-export default (props) => {
+const AncestrySelection = (props) => {
   const { state, dispatch } = props;
 
-  const isValid = STAGE_ANCESTRY in state.choices;
+  const isValid = STEP_SELECT_ANCESTRY in state.choices;
 
   const header = <CardHeader label="Ancestry Selection" isValid={isValid} />;
 
@@ -36,9 +36,7 @@ export default (props) => {
           <button
             className="btn btn-primary"
             disabled={!isValid}
-            onClick={() =>
-              dispatch(nextStep({ step: STEP_ANCESTRY_ABILITIES }))
-            }
+            onClick={() => dispatch(nextStep({}))}
           >
             Continue
           </button>
@@ -47,3 +45,5 @@ export default (props) => {
     </Card>
   );
 };
+
+export default AncestrySelection;

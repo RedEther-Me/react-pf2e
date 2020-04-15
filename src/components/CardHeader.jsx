@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 
-export default props => {
+const CardHeader = (props) => {
   const { label, isValid, isOpen, setOpen } = props;
 
   return (
@@ -10,14 +10,14 @@ export default props => {
       <div className="d-flex justify-content-between">
         <button
           className={classnames("btn btn-outline-dark btn-sm mr-2", {
-            "d-none": !isValid
+            "d-none": !isValid,
           })}
         >
           <i className="fas fa-check" />
         </button>
         <button
           className={classnames("btn btn-outline-dark btn-sm", {
-            "d-none": !setOpen || isOpen
+            "d-none": !setOpen || isOpen,
           })}
           onClick={() => setOpen && setOpen(true)}
         >
@@ -25,7 +25,7 @@ export default props => {
         </button>
         <button
           className={classnames("btn btn-outline-dark btn-sm", {
-            "d-none": !setOpen || !isOpen
+            "d-none": !setOpen || !isOpen,
           })}
           onClick={() => setOpen && setOpen(false)}
         >
@@ -35,3 +35,5 @@ export default props => {
     </div>
   );
 };
+
+export default CardHeader;

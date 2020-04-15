@@ -10,16 +10,16 @@ import {
 
 import { makeSelection, nextStep } from "../../creationActions";
 import {
-  STAGE_ANCESTRY,
+  STEP_SELECT_ANCESTRY,
   STEP_ANCESTRY_ABILITIES,
   STEP_HERITAGE,
-} from "../../creationReducer";
+} from "../../constants";
 
-export default (props) => {
+const AncestryAbilityBoosts = (props) => {
   const { state, dispatch } = props;
 
   const {
-    [STAGE_ANCESTRY]: ancestry,
+    [STEP_SELECT_ANCESTRY]: ancestry,
     [STEP_ANCESTRY_ABILITIES]: selected = {},
   } = state.choices;
   const groups = ancestry ? ancestry.ability_boosts : [];
@@ -48,7 +48,7 @@ export default (props) => {
           <button
             className="btn btn-primary"
             disabled={!isValid}
-            onClick={() => dispatch(nextStep({ step: STEP_HERITAGE }))}
+            onClick={() => dispatch(nextStep({}))}
           >
             Continue
           </button>
@@ -57,3 +57,5 @@ export default (props) => {
     </Card>
   );
 };
+
+export default AncestryAbilityBoosts;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 
-export default props => {
+const Dropdown = (props) => {
   const { children, label, className } = props;
 
   const [show, setShow] = useState(false);
@@ -29,3 +29,5 @@ export default props => {
     </div>
   );
 };
+
+export default Dropdown;

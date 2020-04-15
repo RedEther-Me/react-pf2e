@@ -2,14 +2,14 @@ import React from "react";
 import classnames from "classnames";
 
 import { makeSelection } from "../../creationActions";
-import { STAGE_ANCESTRY } from "../../creationReducer";
+import { STEP_SELECT_ANCESTRY } from "../../creationReducer";
 
-export default (props) => {
+const AncestrySelectionOption = (props) => {
   const { ancestry, state, dispatch } = props;
-  const selectedAncestry = state.choices[STAGE_ANCESTRY];
+  const selectedAncestry = state.choices[STEP_SELECT_ANCESTRY];
 
   const onAncestryClick = () => {
-    dispatch(makeSelection({ key: STAGE_ANCESTRY, value: ancestry }));
+    dispatch(makeSelection({ key: STEP_SELECT_ANCESTRY, value: ancestry }));
   };
 
   return (
@@ -23,3 +23,5 @@ export default (props) => {
     </button>
   );
 };
+
+export default AncestrySelectionOption;

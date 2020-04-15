@@ -12,15 +12,68 @@ export * from "./constants";
 
 const Immutable = require("seamless-immutable").static;
 
-const order = [STAGE_ANCESTRY];
-
-export const initialState = {
-  order,
+export const initialState = Immutable.from({
+  stages: stageObj,
   choices: {},
   currentStage: STAGE_ANCESTRY,
-  currentStep: STAGE_ANCESTRY,
+  currentStep: stageObj[STAGE_ANCESTRY].steps[0].name,
   character: defaultAttributes,
   preview: defaultAttributes,
+});
+
+const enableStageAndStep = ({ state, stage, stepIndex, setCurrent = true }) => {
+  if (!stage || !(stepIndex >= 0)) {
+    console.log("tried to enable a stage/step that are illegal: ", {
+      stage,
+      stepIndex,
+    });
+    return state;
+  }
+
+  const withStageEnabled = Immutable.setIn(
+    state,
+    ["stages", stage, "enabled"],
+    true
+  );
+  const withStepEnabled = Immutable.setIn(
+    withStageEnabled,
+    ["stages", stage, "steps", stepIndex, "enabled"],
+    true
+  );
+
+  if (!setCurrent) {
+    return withStepEnabled;
+  }
+
+  const updates = {
+    currentStage: stage,
+    currentStep: state.stages[stage].steps[stepIndex].name,
+  };
+
+  return Immutable.merge(withStepEnabled, updates);
+};
+
+const enableNextStep = ({ state, stage, currentStep, setCurrent = true }) => {
+  const { steps } = state.stages[stage];
+
+  const currentStepIndex = steps.findIndex((step) => step.name === currentStep);
+  const sliceStepIndex = steps
+    .slice(currentStepIndex + 1)
+    .findIndex((step) => step.visible === true);
+
+  const stepIndex = currentStepIndex + 1 + sliceStepIndex;
+
+  return enableStageAndStep({ state, stage, stepIndex, setCurrent });
+};
+
+const enableStepByName = ({ state, stage, stepName, setCurrent = true }) => {
+  const { steps } = state.stages[stage];
+
+  const stepIndex = steps.findIndex(
+    (step) => step.visible === true && step.name === stepName
+  );
+
+  return enableStageAndStep({ state, stage, stepIndex, setCurrent });
 };
 
 export default (state, action) => {
@@ -33,7 +86,7 @@ export default (state, action) => {
         [key]: value,
       };
 
-      const { preview, traits } = calculateState(state.order, choices);
+      const { preview, traits } = calculateState(state.stages, choices);
 
       const updates = {
         choices,
@@ -44,32 +97,43 @@ export default (state, action) => {
       return Immutable.merge(state, updates);
     }
     case NEXT_STEP: {
-      const isPresent = state.order.includes(action.step);
-      const updates = {
-        order: !isPresent ? [...state.order, action.step] : state.order,
-        currentStep: action.step,
-      };
+      const { step } = action;
 
-      return Immutable.merge(state, updates);
+      const { currentStage, currentStep } = state;
+
+      if (!step) {
+        return enableNextStep({
+          state,
+          stage: currentStage,
+          currentStep,
+        });
+      } else {
+        return enableStepByName({
+          state,
+          stage: currentStage,
+          stepName: step,
+        });
+      }
     }
     case SAVE_AND_CONTINUE: {
       const { nextStep } = action;
 
-      const firstStep = stageObj[nextStep].name;
-
       const updates = {
-        currentStage: nextStep,
-        currentStep: firstStep,
         character: state.preview,
-        order: [...state.order, nextStep],
       };
 
-      return Immutable.merge(state, updates);
+      const withUpdates = Immutable.merge(state, updates);
+      const withStageEnabled = enableStageAndStep({
+        state: withUpdates,
+        stage: nextStep,
+        stepIndex: 0,
+      });
+
+      return withStageEnabled;
     }
     case SWITCH_STAGE: {
       const { stage } = action;
-      console.log(action, stageObj);
-      const firstStep = stageObj[stage].name;
+      const firstStep = state.stages.steps[0].name;
 
       return Immutable.merge(state, {
         currentStage: stage,

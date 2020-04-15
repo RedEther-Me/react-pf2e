@@ -2,7 +2,7 @@ import React from "react";
 
 import { Row, Col, Dropdown } from "..";
 
-export default (props) => {
+const AbilityBoostOption = (props) => {
   const { group, selected, index, selectAction } = props;
 
   if (typeof group === "string") {
@@ -56,3 +56,5 @@ export default (props) => {
     </li>
   );
 };
+
+export default AbilityBoostOption;

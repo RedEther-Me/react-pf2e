@@ -1,7 +1,12 @@
 import React from "react";
 import classnames from "classnames";
 
-export default ({ firstColumn, secondColumn, children, sizes = [2, 4, 6] }) => {
+const SelectionLayout = ({
+  firstColumn,
+  secondColumn,
+  children,
+  sizes = [2, 4, 6],
+}) => {
   return (
     <div className="row">
       <div className={classnames({ [`col-${sizes[0]}`]: true })}>
@@ -16,3 +21,5 @@ export default ({ firstColumn, secondColumn, children, sizes = [2, 4, 6] }) => {
     </div>
   );
 };
+
+export default SelectionLayout;

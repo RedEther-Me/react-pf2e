@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 
-export default props => {
+const Card = (props) => {
   const { header, children, fullHeight, className } = props;
 
   return (
@@ -17,3 +17,5 @@ export default props => {
     </div>
   );
 };
+
+export default Card;

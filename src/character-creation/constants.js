@@ -9,24 +9,35 @@ const {
   CHARISMA,
 } = abilities;
 
-export const STAGE_ANCESTRY = "Ancestry";
+const createStep = (opts) => ({
+  enabled: false,
+  visible: true,
+  ...opts,
+});
+
+export const STAGE_ANCESTRY = "1-Ancestry";
+export const STEP_SELECT_ANCESTRY = "Select Ancestry";
 export const STEP_ANCESTRY_ABILITIES = "Ancestry Ability Boosts";
 export const STEP_HERITAGE = "Heritage";
 export const STEP_BACKGROUND = "Background";
+export const STEP_BACKGROUND_OPTIONS = "Background Options";
 export const STEP_BACKGROUND_ABILITIES = "Background Ability Boosts";
 export const STAGE_ANCESTRY_DATA = {
   name: STAGE_ANCESTRY,
   description: "Ancestry & Background",
+  enabled: true,
+  active: true,
   steps: [
-    { name: STAGE_ANCESTRY },
-    { name: STEP_ANCESTRY_ABILITIES },
-    { name: STEP_HERITAGE },
-    { name: STEP_BACKGROUND },
-    { name: STEP_BACKGROUND_ABILITIES },
+    createStep({ name: STEP_SELECT_ANCESTRY, enabled: true }),
+    createStep({ name: STEP_ANCESTRY_ABILITIES }),
+    createStep({ name: STEP_HERITAGE }),
+    createStep({ name: STEP_BACKGROUND }),
+    createStep({ name: STEP_BACKGROUND_OPTIONS, visible: false }),
+    createStep({ name: STEP_BACKGROUND_ABILITIES }),
   ],
 };
 
-export const STAGE_CLASS = "Class";
+export const STAGE_CLASS = "2-Class";
 export const STEP_CLASS_SKILLS = "Class Skills";
 export const STAGE_CLASS_DATA = {
   name: STAGE_CLASS,
@@ -34,21 +45,21 @@ export const STAGE_CLASS_DATA = {
   steps: [{ name: STAGE_CLASS }],
 };
 
-export const STAGE_ABILITY_SCORES = "Abilities Scores";
+export const STAGE_ABILITY_SCORES = "3-Abilities Scores";
 export const STAGE_ABILITY_SCORES_DATA = {
   name: STAGE_ABILITY_SCORES,
   description: "Ability Boosts",
   steps: [{ name: STAGE_ABILITY_SCORES }],
 };
 
-export const STAGE_SKILLS = "Skills";
+export const STAGE_SKILLS = "4-Skills";
 export const STAGE_SKILLS_DATA = {
   name: STAGE_SKILLS,
   description: "Skills",
   steps: [{ name: STAGE_SKILLS }],
 };
 
-export const STAGE_EQUIPMENT = "Equipment";
+export const STAGE_EQUIPMENT = "5-Equipment";
 export const STAGE_EQUIPMENT_DATA = {
   name: STAGE_EQUIPMENT,
   description: "Equipment",
