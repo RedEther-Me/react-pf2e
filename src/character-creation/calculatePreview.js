@@ -85,55 +85,11 @@ const combineSkills = (state, choice) => {
 
     return Immutable.setIn(inner, ["preview", "skills", skill], level);
   }, state);
-
-  // return {
-  //   ...acc,
-  //   preview: {
-  //     ...acc.preview,
-  //     skills: updatedSkills,
-  //   },
-  // };
 };
-
-// const combineSkills = (acc, choice) => {
-//   const { skills } = choice;
-
-//   const updatedSkills = Object.entries(skills || {}).reduce(
-//     (inner, [skill, level]) => {
-//       if (skill === "free") {
-//         return { ...inner, free: inner.free + level };
-//       }
-
-//       const isTrained = skill in inner;
-//       const hasSubtype = SKILL_MAP[skill].hasSubtype;
-
-//       if (isTrained && !hasSubtype) {
-//         return { ...inner, free: inner.free + 1 };
-//       }
-
-//       return {
-//         ...inner,
-//         [skill]: level,
-//       };
-//     },
-//     acc.preview.skills || {}
-//   );
-
-//   return {
-//     ...acc,
-//     preview: {
-//       ...acc.preview,
-//       skills: updatedSkills,
-//     },
-//   };
-// };
 
 const combineFeats = (acc, choice) => acc;
 
 const combineOrder = ({ field, stageName, stepName }) => (state, choice) => {
-  if (field in choice) {
-  }
-
   const isVisible = field in choice;
 
   const stepIndex = state.stages[stageName].steps.findIndex(
