@@ -20,7 +20,7 @@ export const STEP_SELECT_ANCESTRY = "Select Ancestry";
 export const STEP_ANCESTRY_ABILITIES = "Ancestry Ability Boosts";
 export const STEP_HERITAGE = "Heritage";
 export const STEP_BACKGROUND = "Background";
-export const STEP_BACKGROUND_OPTIONS = "Background Options";
+export const STEP_BACKGROUND_SKILL = "Background Skill Options";
 export const STEP_BACKGROUND_ABILITIES = "Background Ability Boosts";
 export const STAGE_ANCESTRY_DATA = {
   name: STAGE_ANCESTRY,
@@ -32,7 +32,7 @@ export const STAGE_ANCESTRY_DATA = {
     createStep({ name: STEP_ANCESTRY_ABILITIES }),
     createStep({ name: STEP_HERITAGE }),
     createStep({ name: STEP_BACKGROUND }),
-    createStep({ name: STEP_BACKGROUND_OPTIONS, visible: false }),
+    createStep({ name: STEP_BACKGROUND_SKILL, visible: false }),
     createStep({ name: STEP_BACKGROUND_ABILITIES }),
   ],
 };
@@ -42,28 +42,28 @@ export const STEP_CLASS_SKILLS = "Class Skills";
 export const STAGE_CLASS_DATA = {
   name: STAGE_CLASS,
   description: "Class",
-  steps: [{ name: STAGE_CLASS }],
+  steps: [createStep({ name: STAGE_CLASS })],
 };
 
 export const STAGE_ABILITY_SCORES = "3-Abilities Scores";
 export const STAGE_ABILITY_SCORES_DATA = {
   name: STAGE_ABILITY_SCORES,
   description: "Ability Boosts",
-  steps: [{ name: STAGE_ABILITY_SCORES }],
+  steps: [createStep({ name: STAGE_ABILITY_SCORES })],
 };
 
 export const STAGE_SKILLS = "4-Skills";
 export const STAGE_SKILLS_DATA = {
   name: STAGE_SKILLS,
   description: "Skills",
-  steps: [{ name: STAGE_SKILLS }],
+  steps: [createStep({ name: STAGE_SKILLS })],
 };
 
 export const STAGE_EQUIPMENT = "5-Equipment";
 export const STAGE_EQUIPMENT_DATA = {
   name: STAGE_EQUIPMENT,
   description: "Equipment",
-  steps: [{ name: STAGE_EQUIPMENT }],
+  steps: [createStep({ name: STAGE_EQUIPMENT })],
 };
 
 export const stages = [
@@ -86,4 +86,7 @@ export const defaultAttributes = {
   [INTELLIGENCE]: { value: 10, mod: 0 },
   [WISDOM]: { value: 10, mod: 0 },
   [CHARISMA]: { value: 10, mod: 0 },
+  skills: {
+    free: 0,
+  },
 };

@@ -4,7 +4,7 @@ import classnames from "classnames";
 import { makeSelection } from "../../creationActions";
 import { STEP_HERITAGE } from "../../creationReducer";
 
-export default (props) => {
+const HeritageSelectionOption = (props) => {
   const { heritage, state, dispatch } = props;
   const selectedHeritage = state.choices[STEP_HERITAGE];
 
@@ -23,3 +23,5 @@ export default (props) => {
     </button>
   );
 };
+
+export default HeritageSelectionOption;

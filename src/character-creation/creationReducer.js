@@ -86,15 +86,11 @@ export default (state, action) => {
         [key]: value,
       };
 
-      const { preview, traits } = calculateState(state.stages, choices);
+      const withChoices = Immutable.set(state, "choices", choices);
 
-      const updates = {
-        choices,
-        traits,
-        preview,
-      };
+      const withUpdates = calculateState(withChoices);
 
-      return Immutable.merge(state, updates);
+      return withUpdates;
     }
     case NEXT_STEP: {
       const { step } = action;

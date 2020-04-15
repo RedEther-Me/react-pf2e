@@ -4,7 +4,7 @@ import classnames from "classnames";
 import { makeSelection } from "../../creationActions";
 import { STEP_BACKGROUND } from "../../constants";
 
-export default (props) => {
+const BackgroundSelectionOption = (props) => {
   const { background, state, dispatch } = props;
   const selectedBackground = state.choices[STEP_BACKGROUND];
 
@@ -24,3 +24,5 @@ export default (props) => {
     </button>
   );
 };
+
+export default BackgroundSelectionOption;

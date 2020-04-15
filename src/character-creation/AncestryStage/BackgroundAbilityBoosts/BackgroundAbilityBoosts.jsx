@@ -5,7 +5,7 @@ import { Card, CardHeader, AbilityBoostSelector } from "../../../components";
 import { makeSelection } from "../../creationActions";
 import { STEP_BACKGROUND, STEP_BACKGROUND_ABILITIES } from "../../constants";
 
-export default (props) => {
+const BackgroundAbilityBoosts = (props) => {
   const { state, dispatch } = props;
 
   const {
@@ -36,3 +36,5 @@ export default (props) => {
     </Card>
   );
 };
+
+export default BackgroundAbilityBoosts;

@@ -4,126 +4,172 @@ import {
   STEP_ANCESTRY_ABILITIES,
   STEP_HERITAGE,
   STEP_BACKGROUND,
+  STEP_BACKGROUND_SKILL,
   STEP_BACKGROUND_ABILITIES,
   STAGE_CLASS,
   STAGE_ABILITY_SCORES,
   STAGE_SKILLS,
+  STAGE_ANCESTRY,
 } from "./constants";
 
 import { SKILL_MAP } from "../data/skills";
 import abilities from "../data/abilities";
 import calcMod from "../utils/calcMod";
 
+const Immutable = require("seamless-immutable").static;
+
 const { INTELLIGENCE } = abilities;
 
-const modifyAbilityScore = (preview, ability, amount) => {
-  const { value } = preview[ability];
+const modifyAbilityScore = (state, ability, amount) => {
+  const { value } = state.preview[ability];
   const total = value + amount;
 
-  return {
-    ...preview,
-    [ability]: { value: total, mod: calcMod(total) },
-  };
+  return Immutable.setIn(state, ["preview", ability], {
+    value: total,
+    mod: calcMod(total),
+  });
 };
 
-const combineTraits = (acc, choice) => ({
-  ...acc,
-  traits: [...acc.traits, ...(choice.traits || [])],
-});
+const combineTraits = (state, choice) => state;
+// Immutable.merge(state, { traits: choice.traits || [] });
 
-const combineState = (acc, choice) => ({
-  ...acc,
-  preview: { ...acc.preview, ...(choice.state || {}) },
-});
+const combineState = (state, choice) => {
+  return Immutable.merge(
+    state,
+    { preview: choice.state || {} },
+    { deep: true }
+  );
+};
 
-const combineAbility = (acc, choice) => {
-  const withBoosts = choice.ability_boosts.reduce((inner, ability) => {
+const combineAbility = (state, choice) => {
+  return choice.ability_boosts.reduce((inner, ability) => {
     if (typeof ability === "string") {
       return modifyAbilityScore(inner, ability, 2);
     }
 
     return inner;
-  }, acc.preview);
-
-  return { ...acc, preview: withBoosts };
+  }, state);
 };
 
-const combineAbilityPicker = (acc, choice) => {
-  const withBoosts = Object.values(choice).reduce(
+const combineAbilityPicker = (state, choice) => {
+  return Object.values(choice).reduce(
     (inner, ability) => modifyAbilityScore(inner, ability, 2),
-    acc.preview
+    state
   );
-
-  return { ...acc, preview: withBoosts };
 };
 
-const combineSkills = (acc, choice) => {
+const combineSkills = (state, choice) => {
   const { skills } = choice;
 
-  const updatedSkills = Object.entries(skills || {}).reduce(
-    (inner, [skill, level]) => {
-      if (skill === "free") {
-        return { ...inner, free: inner.free + level };
-      }
+  return Object.entries(skills || {}).reduce((inner, [skill, level]) => {
+    const { skills: currentSkills } = inner.preview;
 
-      const isTrained = skill in inner;
-      const hasSubtype = SKILL_MAP[skill].hasSubtype;
+    if (skill === "free") {
+      return Immutable.setIn(
+        inner,
+        ["preview", "skills", "free"],
+        currentSkills.free + level
+      );
+    }
 
-      if (isTrained && !hasSubtype) {
-        return { ...inner, free: inner.free + 1 };
-      }
+    const isTrained = skill in inner;
+    const hasSubtype = SKILL_MAP[skill].hasSubtype;
 
-      return {
-        ...inner,
-        [skill]: level,
-      };
-    },
-    acc.preview.skills || {}
-  );
+    if (isTrained && !hasSubtype) {
+      return Immutable.setIn(
+        inner,
+        ["preview", "skills", "free"],
+        currentSkills.free + 1
+      );
+    }
 
-  return {
-    ...acc,
-    preview: {
-      ...acc.preview,
-      skills: updatedSkills,
-    },
-  };
+    return Immutable.setIn(inner, ["preview", "skills", skill], level);
+  }, state);
+
+  // return {
+  //   ...acc,
+  //   preview: {
+  //     ...acc.preview,
+  //     skills: updatedSkills,
+  //   },
+  // };
 };
+
+// const combineSkills = (acc, choice) => {
+//   const { skills } = choice;
+
+//   const updatedSkills = Object.entries(skills || {}).reduce(
+//     (inner, [skill, level]) => {
+//       if (skill === "free") {
+//         return { ...inner, free: inner.free + level };
+//       }
+
+//       const isTrained = skill in inner;
+//       const hasSubtype = SKILL_MAP[skill].hasSubtype;
+
+//       if (isTrained && !hasSubtype) {
+//         return { ...inner, free: inner.free + 1 };
+//       }
+
+//       return {
+//         ...inner,
+//         [skill]: level,
+//       };
+//     },
+//     acc.preview.skills || {}
+//   );
+
+//   return {
+//     ...acc,
+//     preview: {
+//       ...acc.preview,
+//       skills: updatedSkills,
+//     },
+//   };
+// };
 
 const combineFeats = (acc, choice) => acc;
 
-const combineOrder = (field, name) => (acc, choice) => {
+const combineOrder = ({ field, stageName, stepName }) => (state, choice) => {
   if (field in choice) {
-    console.log(field, name, acc.order);
   }
 
-  return acc;
+  const isVisible = field in choice;
+
+  const stepIndex = state.stages[stageName].steps.findIndex(
+    (step) => step.name === stepName
+  );
+  const updateState = Immutable.setIn(
+    state,
+    ["stages", stageName, "steps", stepIndex, "visible"],
+    isVisible
+  );
+
+  return updateState;
 };
 
 const combine = (...processes) => {
-  return (acc, choice) => {
-    return processes.reduce((acc, process) => process(acc, choice), acc);
+  return (state, choice) => {
+    return processes.reduce((inner, process) => process(inner, choice), state);
   };
 };
 
-const combineAncestry = (acc, choice) => {
+const combineAncestry = (state, choice) => {
   // Ability Flaw
-  const withFlaw = modifyAbilityScore(acc.preview, choice.ability_flaw, -2);
+  const withFlaw = modifyAbilityScore(state, choice.ability_flaw, -2);
 
-  return { ...acc, preview: withFlaw };
+  return withFlaw;
 };
 
-const combineIntSkills = (acc) => {
-  const { [INTELLIGENCE]: intelligence } = acc.preview;
+const combineIntSkills = (state) => {
+  const { [INTELLIGENCE]: intelligence } = state.preview;
   const { mod: intMod } = intelligence;
 
-  return {
-    ...acc,
-    preview: {
-      ...acc.preview,
-      skills: { ...acc.preview.skills, free: acc.preview.skills.free + intMod },
-    },
-  };
+  return Immutable.setIn(
+    state,
+    ["preview", "skills", "free"],
+    state.preview.skills.free + intMod
+  );
 };
 
 const stepMap = {
@@ -138,35 +184,36 @@ const stepMap = {
   [STEP_BACKGROUND]: combine(
     combineSkills,
     combineFeats,
-    combineOrder("pick_skill", "Background Skill Option")
+    combineOrder({
+      field: "pick_skill",
+      stageName: STAGE_ANCESTRY,
+      stepName: STEP_BACKGROUND_SKILL,
+    })
   ),
+  [STEP_BACKGROUND_SKILL]: combine(combineSkills),
   [STEP_BACKGROUND_ABILITIES]: combine(combineAbilityPicker),
   [STAGE_CLASS]: combine(combineAbility, combineSkills),
-  [STAGE_ABILITY_SCORES]: combine(combineAbilityPicker),
-  [STAGE_SKILLS]: combine(combineIntSkills, combineSkills),
+  [STAGE_ABILITY_SCORES]: combine(combineAbilityPicker, combineIntSkills),
+  [STAGE_SKILLS]: combine(combineSkills),
 };
 
-export const calculateState = (stages, choices) => {
+export const calculateState = (state) => {
+  const { stages, choices } = state;
+
   const order = Object.values(stages)
     .reduce((acc, stage) => [...acc, ...stage.steps], [])
     .filter((step) => step.enabled)
     .map((step) => step.name);
 
-  return order.reduce(
-    (acc, step) => {
-      const choice = choices[step];
+  return order.reduce((acc, step) => {
+    const choice = choices[step];
 
-      if (!choice) {
-        return acc;
-      }
-
-      const lookup = stepMap[step];
-      return lookup(acc, choice);
-    },
-    {
-      order,
-      traits: [],
-      preview: { ...defaultAttributes, skills: { free: 0 } },
+    if (!choice) {
+      return acc;
     }
-  );
+
+    const lookup = stepMap[step];
+
+    return lookup(acc, choice);
+  }, Immutable.set(state, "preview", defaultAttributes));
 };

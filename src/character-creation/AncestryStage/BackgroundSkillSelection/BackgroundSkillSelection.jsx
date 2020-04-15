@@ -1,30 +1,33 @@
 import React from "react";
 
 import { Card, CardHeader, Row, Col } from "../../../components";
-import { BACKGROUND_LIST } from "../../../data/backgrounds";
 
-import BackgroundSelectionOption from "./BackgroundSelectionOption";
+import BackgroundSkillSelectionOption from "./BackgroundSkillSelectionOption";
 
 import { nextStep } from "../../creationActions";
-import { STEP_BACKGROUND } from "../../constants";
+import { STEP_BACKGROUND, STEP_BACKGROUND_SKILL } from "../../constants";
 
-const BackgroundSelection = (props) => {
+const BackgroundSkillSelection = (props) => {
   const { state, dispatch } = props;
 
-  const isValid = STEP_BACKGROUND in state.choices;
+  const { pick_skill } = state.choices[STEP_BACKGROUND];
 
-  const header = <CardHeader label="Background Selection" isValid={isValid} />;
+  const isValid = STEP_BACKGROUND_SKILL in state.choices;
+
+  const header = (
+    <CardHeader label="Background Skill Selection" isValid={isValid} />
+  );
 
   return (
     <Card header={header} fullHeight>
       <Row>
         <Col>
           <div className="list-group">
-            {BACKGROUND_LIST.map((background) => {
+            {pick_skill.map((skill) => {
               return (
-                <BackgroundSelectionOption
-                  {...{ background, state, dispatch }}
-                  key={background.name}
+                <BackgroundSkillSelectionOption
+                  {...{ skill, state, dispatch }}
+                  key={skill[0]}
                 />
               );
             })}
@@ -46,4 +49,4 @@ const BackgroundSelection = (props) => {
   );
 };
 
-export default BackgroundSelection;
+export default BackgroundSkillSelection;

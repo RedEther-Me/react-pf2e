@@ -5,13 +5,9 @@ import { Card, CardHeader, Row, Col } from "../../../components";
 import HeritageSelectionOption from "./HeritageSelectionOption";
 
 import { nextStep } from "../../creationActions";
-import {
-  STEP_SELECT_ANCESTRY,
-  STEP_HERITAGE,
-  STEP_BACKGROUND,
-} from "../../creationReducer";
+import { STEP_SELECT_ANCESTRY, STEP_HERITAGE } from "../../constants";
 
-export default (props) => {
+const HeritageSelection = (props) => {
   const { state, dispatch } = props;
 
   const isValid = STEP_HERITAGE in state.choices;
@@ -41,7 +37,7 @@ export default (props) => {
           <button
             className="btn btn-primary"
             disabled={!isValid}
-            onClick={() => dispatch(nextStep({ step: STEP_BACKGROUND }))}
+            onClick={() => dispatch(nextStep({}))}
           >
             Continue
           </button>
@@ -50,3 +46,5 @@ export default (props) => {
     </Card>
   );
 };
+
+export default HeritageSelection;
