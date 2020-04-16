@@ -1,15 +1,13 @@
 import React from "react";
 import classnames from "classnames";
 
-import { TRAINED } from "../../../data/proficiencies";
-import { SKILL_MAP } from "../../../data/skills";
+import { TRAINED } from "../../../../data/proficiencies";
 
-import { makeSelection } from "../../creationActions";
-import { STEP_BACKGROUND_SKILL } from "../../constants";
+import { makeSelection } from "../../../creationActions";
+import { STEP_BACKGROUND_SKILL } from "../../../constants";
 
-const BackgroundSkillSelectionOption = (props) => {
-  const { skill, state, dispatch } = props;
-  const lookup = SKILL_MAP[skill[0]];
+const BackgroundSkillSelectionOptionSingle = (props) => {
+  const { state, dispatch, lookup } = props;
 
   const isActive =
     lookup.name in (state.choices[STEP_BACKGROUND_SKILL]?.skills || {});
@@ -35,4 +33,4 @@ const BackgroundSkillSelectionOption = (props) => {
   );
 };
 
-export default BackgroundSkillSelectionOption;
+export default BackgroundSkillSelectionOptionSingle;

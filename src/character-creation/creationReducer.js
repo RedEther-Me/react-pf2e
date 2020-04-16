@@ -129,11 +129,11 @@ export default (state, action) => {
     }
     case SWITCH_STAGE: {
       const { stage } = action;
-      const firstStep = state.stages.steps[0].name;
 
-      return Immutable.merge(state, {
-        currentStage: stage,
-        currentStep: firstStep,
+      return enableStageAndStep({
+        state,
+        stage,
+        stepIndex: 0,
       });
     }
     default:
