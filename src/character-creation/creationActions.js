@@ -8,6 +8,14 @@ export const makeSelection = ({ type, key, value }) => {
   };
 };
 
+export const MAKE_SELECTIONS = "MAKE_SELECTIONS";
+export const makeMultiSelection = ({ type, selections }) => {
+  return {
+    type: MAKE_SELECTIONS,
+    selections,
+  };
+};
+
 export const NEXT_STEP = "NEXT_STEP";
 
 export const nextStep = ({ type, step }) => {

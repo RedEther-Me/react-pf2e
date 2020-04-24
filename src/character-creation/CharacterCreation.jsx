@@ -1,7 +1,5 @@
 import React, { Fragment, useReducer } from "react";
 
-import { Card, SelectionLayout } from "../components";
-
 import Steps from "./Steps";
 import Stages from "./Stages";
 import AncestryStage from "./AncestryStage";
@@ -21,33 +19,31 @@ import creationReducer, { initialState } from "./creationReducer";
 const mapComponent = (stepName) => {
   switch (stepName) {
     case STAGE_ANCESTRY:
-      return [AncestryStage, STAGE_CLASS];
+      return AncestryStage;
     case STAGE_CLASS:
-      return [ClassStage, STAGE_ABILITY_SCORES];
+      return ClassStage;
     case STAGE_ABILITY_SCORES:
-      return [AbilityScoresStage, STAGE_SKILLS];
+      return AbilityScoresStage;
     case STAGE_SKILLS:
-      return [SkillStage, STAGE_EQUIPMENT];
+      return SkillStage;
     case STAGE_EQUIPMENT:
-      return [() => null, ""];
+      return () => null;
     default:
       return [];
   }
 };
 
-export default (props) => {
+const CharacterCreation = (props) => {
   const [state, dispatch] = useReducer(creationReducer, initialState);
 
-  const [SecondComponent, nextStage] = mapComponent(state.currentStage);
-  const firstColumn = <Steps {...{ state, dispatch, nextStage }} />;
-  const secondColumn = <SecondComponent {...{ state, dispatch }} />;
+  const SecondComponent = mapComponent(state.currentStage);
 
   return (
     <Fragment>
       <Stages {...{ state, dispatch }} />
-      <SelectionLayout {...{ firstColumn, secondColumn }}>
-        <Card fullHeight>{JSON.stringify(state.preview)}</Card>
-      </SelectionLayout>
+      <SecondComponent {...{ state, dispatch }} />
     </Fragment>
   );
 };
+
+export default CharacterCreation;

@@ -1,5 +1,9 @@
 import React from "react";
 
+import { SelectionLayout } from "../../components";
+import CharacterView from "../../components/CharacterView";
+import Steps from "../Steps";
+
 import AncestrySelection from "./AncestrySelection";
 import AncestryAbilityBoosts from "./AncestryAbilityBoosts";
 import HeritageSelection from "./HeritageStage";
@@ -14,27 +18,28 @@ import {
   STEP_BACKGROUND_SKILL,
   STEP_BACKGROUND_ABILITIES,
   STEP_SELECT_ANCESTRY,
+  STAGE_CLASS,
 } from "../constants";
 
 const mapComponent = ({ state, dispatch }) => {
   switch (state.currentStep) {
     case STEP_SELECT_ANCESTRY: {
-      return <AncestrySelection {...{ state, dispatch }} />;
+      return AncestrySelection;
     }
     case STEP_ANCESTRY_ABILITIES: {
-      return <AncestryAbilityBoosts {...{ state, dispatch }} />;
+      return AncestryAbilityBoosts;
     }
     case STEP_HERITAGE: {
-      return <HeritageSelection {...{ state, dispatch }} />;
+      return HeritageSelection;
     }
     case STEP_BACKGROUND: {
-      return <BackgroundSelection {...{ state, dispatch }} />;
+      return BackgroundSelection;
     }
     case STEP_BACKGROUND_SKILL: {
-      return <BackgroundSkillSelection {...{ state, dispatch }} />;
+      return BackgroundSkillSelection;
     }
     case STEP_BACKGROUND_ABILITIES: {
-      return <BackgroundAbilityBoosts {...{ state, dispatch }} />;
+      return BackgroundAbilityBoosts;
     }
     default:
       return null;
@@ -42,7 +47,19 @@ const mapComponent = ({ state, dispatch }) => {
 };
 
 const AncestryStage = (props) => {
-  return mapComponent(props);
+  const { state, dispatch } = props;
+
+  const SecondComponent = mapComponent(props);
+  const firstColumn = (
+    <Steps {...{ state, dispatch, nextStage: STAGE_CLASS }} />
+  );
+  const secondColumn = <SecondComponent {...{ state, dispatch }} />;
+
+  return (
+    <SelectionLayout {...{ firstColumn, secondColumn }}>
+      <CharacterView {...{ state }} />
+    </SelectionLayout>
+  );
 };
 
 export default AncestryStage;

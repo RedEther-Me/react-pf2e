@@ -38,11 +38,15 @@ export const STAGE_ANCESTRY_DATA = {
 };
 
 export const STAGE_CLASS = "2-Class";
-export const STEP_CLASS_SKILLS = "Class Skills";
+export const STEP_CLASS_SELECTION = "Select Class";
+export const STEP_CLASS_SUB_SELECTIOIN = "-- Sub Class";
 export const STAGE_CLASS_DATA = {
   name: STAGE_CLASS,
   description: "Class",
-  steps: [createStep({ name: STAGE_CLASS })],
+  steps: [
+    createStep({ name: STEP_CLASS_SELECTION }),
+    createStep({ name: STEP_CLASS_SUB_SELECTIOIN, visible: false }),
+  ],
 };
 
 export const STAGE_ABILITY_SCORES = "3-Abilities Scores";
@@ -89,4 +93,8 @@ export const defaultAttributes = {
   skills: {
     free: 0,
   },
+  feats: {
+    free: {},
+  },
+  level: 1,
 };

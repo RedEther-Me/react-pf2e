@@ -6,12 +6,12 @@ import { classes } from "../../../data";
 import ClassSelectionOption from "./ClassSelectionOption";
 
 import { nextStep } from "../../creationActions";
-import { STAGE_CLASS } from "../../constants";
+import { STEP_CLASS_SELECTION } from "../../constants";
 
 export default (props) => {
   const { state, dispatch } = props;
 
-  const isValid = STAGE_CLASS in state.choices;
+  const isValid = STEP_CLASS_SELECTION in state.choices;
 
   const header = <CardHeader label="Class Selection" isValid={isValid} />;
 

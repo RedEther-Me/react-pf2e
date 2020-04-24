@@ -1,5 +1,6 @@
 import {
   MAKE_SELECTION,
+  MAKE_SELECTIONS,
   SAVE_AND_CONTINUE,
   NEXT_STEP,
   SWITCH_STAGE,
@@ -76,21 +77,33 @@ const enableStepByName = ({ state, stage, stepName, setCurrent = true }) => {
   return enableStageAndStep({ state, stage, stepIndex, setCurrent });
 };
 
+const makeSelection = ({ state, key, value }) => {
+  const choices = {
+    ...state.choices,
+    [key]: value,
+  };
+
+  const withChoices = Immutable.set(state, "choices", choices);
+
+  const withUpdates = calculateState(withChoices);
+
+  return withUpdates;
+};
+
 export default (state, action) => {
   switch (action.type) {
+    case MAKE_SELECTIONS: {
+      const { selections } = action;
+
+      return selections.reduce(
+        (acc, { key, value }) => makeSelection({ state: acc, key, value }),
+        state
+      );
+    }
     case MAKE_SELECTION: {
       const { key, value } = action;
 
-      const choices = {
-        ...state.choices,
-        [key]: value,
-      };
-
-      const withChoices = Immutable.set(state, "choices", choices);
-
-      const withUpdates = calculateState(withChoices);
-
-      return withUpdates;
+      return makeSelection({ state, key, value });
     }
     case NEXT_STEP: {
       const { step } = action;

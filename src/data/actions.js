@@ -1,3 +1,5 @@
+import { BARBARIAN, CONCENTRATE, EMOTION, MENTAL } from "./traits";
+
 export const BORROW_AN_ACRCANE_SPELL = "BORROW_AN_ACRCANE_SPELL";
 export const BORROW_AN_ACRCANE_SPELL_DATA = {};
 export const CREATE_A_DIVERSION = "CREATE_A_DIVERSION";
@@ -120,3 +122,12 @@ export const TRIP_DATA = {};
 
 export const TUMBLE_THROUGH = "TUMBLE_THROUGH";
 export const TUMBLE_THROUGH_DATA = {};
+
+export const RAGE = "RAGE";
+export const RAGE_DATA = {
+  traits: [BARBARIAN, CONCENTRATE, EMOTION, MENTAL],
+};
+export const MIGHTY_RAGE = "MIGHTY_RAGE";
+export const MIGHTY_RAGE_DATA = {
+  traits: [BARBARIAN],
+};
