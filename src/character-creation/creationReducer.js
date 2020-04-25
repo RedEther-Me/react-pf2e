@@ -87,6 +87,8 @@ const makeSelection = ({ state, key, value }) => {
 
   const withUpdates = calculateState(withChoices);
 
+  console.log(withUpdates);
+
   return withUpdates;
 };
 

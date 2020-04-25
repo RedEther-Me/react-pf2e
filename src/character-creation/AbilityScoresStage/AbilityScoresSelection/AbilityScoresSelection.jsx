@@ -3,7 +3,7 @@ import React from "react";
 import { Card, CardHeader, AbilityBoostSelector } from "../../../components";
 import abilities from "../../../data/abilities";
 
-import { STAGE_ABILITY_SCORES } from "../../constants";
+import { STEP_ABILITY_SCORES } from "../../constants";
 import { makeSelection } from "../../creationActions";
 
 const {
@@ -29,7 +29,7 @@ const groups = [singleGroup, singleGroup, singleGroup, singleGroup];
 export default (props) => {
   const { state, dispatch } = props;
 
-  const { [STAGE_ABILITY_SCORES]: selected = {} } = state.choices;
+  const { [STEP_ABILITY_SCORES]: selected = {} } = state.choices;
 
   const isValid = groups.every((group, index) => {
     return typeof group === "string" || index in selected;
@@ -38,7 +38,7 @@ export default (props) => {
   const selectAction = ({ option, index }) =>
     dispatch(
       makeSelection({
-        key: STAGE_ABILITY_SCORES,
+        key: STEP_ABILITY_SCORES,
         value: { ...selected, [index]: option },
       })
     );

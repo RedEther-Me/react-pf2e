@@ -42,7 +42,7 @@ export const ACOLYTE_DATA = {
   ],
   skills: {
     [RELIGION]: TRAINED,
-    [LORE]: { sub: "Scribe", level: TRAINED },
+    [LORE]: { Scribe: TRAINED },
   },
   feats: [FEAT_STUDENT_OF_THE_CANNON],
 };
@@ -73,7 +73,7 @@ export const SCHOLAR_DATA = {
     [STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA],
   ],
   skills: {
-    [LORE]: { sub: "Academia", level: TRAINED },
+    [LORE]: { Academia: TRAINED },
   },
   pick_skill: [[ARCANA], [NATURE], [OCCULTISM], [RELIGION]],
   pick_feats: [FEAT_ASSURANCE_WILD],
@@ -90,7 +90,6 @@ export const SCOUT_DATA = {
   ],
   skills: {
     [SURVIVAL]: TRAINED,
-    // [LORE]: { sub: "Scribe", level: TRAINED },
   },
   pick_skill: [[LORE, ["Forest", "Cavern"]]],
   feats: [FEAT_FORAGER],
@@ -107,7 +106,6 @@ export const STREET_URCHIN_DATA = {
   ],
   skills: {
     [THIEVERY]: TRAINED,
-    // [LORE]: { sub: "Scribe", level: TRAINED },
   },
   pick_skill: [[LORE, ["Absalom", "Magnimar"]]],
   feats: [FEAT_PICKPOCKET],
@@ -124,7 +122,7 @@ export const TINKER_DATA = {
   ],
   skills: {
     [CRAFTING]: TRAINED,
-    [LORE]: { sub: "Engineering", level: TRAINED },
+    [LORE]: { Engineering: TRAINED },
   },
   feats: [FEAT_SPECIALTY_CRAFTING],
 };
@@ -140,7 +138,7 @@ export const WARRIOR_DATA = {
   ],
   skills: {
     [INTIMIDATION]: TRAINED,
-    [LORE]: { sub: "Warfare", level: TRAINED },
+    [LORE]: { Warfare: TRAINED },
   },
   feats: [FEAT_INTIMIDATING_GLARE],
 };
