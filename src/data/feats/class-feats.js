@@ -25,7 +25,7 @@ const FEAT_BARBARIAN_VISION_DATA = [
     name: FEAT_BARBARIAN_VISION,
     title: "Barbarian Vision",
     type: CLASS_FEAT,
-    triats: [BARBARIAN],
+    traits: [BARBARIAN],
     requirements: {
       level: 1,
       class: CLASS_BARBARIAN,
@@ -39,7 +39,7 @@ const FEAT_MOMENT_OF_CLARITY_DATA = [
     name: FEAT_MOMENT_OF_CLARITY,
     title: "Moment of Clarity",
     type: CLASS_FEAT,
-    triats: [BARBARIAN, CONCENTRATE, RAGE],
+    traits: [BARBARIAN, CONCENTRATE, RAGE],
     requirements: {
       level: 1,
       class: CLASS_BARBARIAN,
@@ -56,7 +56,7 @@ const FEAT_RAGING_INTIMIDATION_DATA = [
     name: FEAT_RAGING_INTIMIDATION,
     title: "Raging Intimidation",
     type: CLASS_FEAT,
-    triats: [BARBARIAN],
+    traits: [BARBARIAN],
     requirements: {
       level: 1,
       class: CLASS_BARBARIAN,
@@ -70,7 +70,7 @@ const FEAT_RAGING_THROWER_DATA = [
     name: FEAT_RAGING_THROWER,
     title: "Raging Thrower",
     type: CLASS_FEAT,
-    triats: [BARBARIAN],
+    traits: [BARBARIAN],
     requirements: {
       level: 1,
       class: CLASS_BARBARIAN,
@@ -86,7 +86,7 @@ const FEAT_SUDDEN_CHARGE_DATA = [BARBARIAN, FIGHTER].map((className) => {
     name: `FEAT_SUDDEN_CHARGE_${className}`,
     title: "Sudden Charge",
     type: CLASS_FEAT,
-    triats: [className, FLOURISH, OPEN],
+    traits: [className, FLOURISH, OPEN],
     requirements: {
       level: 1,
       class: name,
@@ -105,7 +105,7 @@ const FEAT_POWER_ATTACK_DATA = [
     name: FEAT_POWER_ATTACK,
     title: "Power Attack",
     type: CLASS_FEAT,
-    triats: [FIGHTER, FLOURISH],
+    traits: [FIGHTER, FLOURISH],
     requirements: {
       level: 1,
       class: CLASS_FIGHTER,

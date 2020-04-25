@@ -17,7 +17,7 @@ const FEAT_ASSURANCE_DATA = SKILL_LIST.map((skill) => ({
   name: `FEAT_ASSURANCE_${skill.name}`,
   title: `Assurance [${skill.name}]`,
   type: SKILL_FEAT,
-  triats: [GENERAL, SKILL, FORTUNE],
+  traits: [GENERAL, SKILL, FORTUNE],
   requirements: {
     skills: {
       [skill.name]: TRAINED,
@@ -31,7 +31,7 @@ const FEAT_COURTLY_GRACES_DATA = [
     name: FEAT_COURTLY_GRACES,
     title: "Courtly Graces",
     type: SKILL_FEAT,
-    triats: [GENERAL, SKILL],
+    traits: [GENERAL, SKILL],
     requirements: {
       skills: {
         [SOCIETY]: TRAINED,
@@ -46,7 +46,7 @@ const FEAT_FORAGER_DATA = [
     name: FEAT_FORAGER,
     title: "Forager",
     type: SKILL_FEAT,
-    triats: [GENERAL, SKILL],
+    traits: [GENERAL, SKILL],
     requirements: {
       skills: {
         [SURVIVAL]: TRAINED,
@@ -61,7 +61,7 @@ const FEAT_INTIMIDATING_GLARE_DATA = [
     name: FEAT_INTIMIDATING_GLARE,
     title: "Intimidating Glare",
     type: SKILL_FEAT,
-    triats: [GENERAL, SKILL],
+    traits: [GENERAL, SKILL],
     requirements: {
       skills: {
         [INTIMIDATION]: TRAINED,
@@ -76,7 +76,7 @@ const FEAT_PICKPOCKET_DATA = [
     name: FEAT_PICKPOCKET,
     title: "Pickpocket",
     type: SKILL_FEAT,
-    triats: [GENERAL, SKILL],
+    traits: [GENERAL, SKILL],
     requirements: {
       skills: {
         [THIEVERY]: TRAINED,
@@ -91,7 +91,7 @@ const FEAT_SPECIALTY_CRAFTING_DATA = [
     name: FEAT_SPECIALTY_CRAFTING,
     title: "Specialty Crafting",
     type: SKILL_FEAT,
-    triats: [GENERAL, SKILL],
+    traits: [GENERAL, SKILL],
     requirements: {
       skills: {
         [CRAFTING]: TRAINED,
@@ -106,7 +106,7 @@ const FEAT_STUDENT_OF_THE_CANNON_DATA = [
     name: FEAT_STUDENT_OF_THE_CANNON,
     title: "Student of the Cannon",
     type: SKILL_FEAT,
-    triats: [GENERAL, SKILL],
+    traits: [GENERAL, SKILL],
     requirements: {
       skills: {
         [RELIGION]: TRAINED,

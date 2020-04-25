@@ -9,13 +9,12 @@ export default (props) => {
   const { enabled: isEnabled } = step;
 
   return (
-    <li
-      className={classnames("list-group-item list-group-item-action", {
-        active: isActive,
+    <button
+      className={classnames("list-group-item", {
         "list-group-item-primary": isEnabled,
         "list-group-item-dark": !isEnabled,
+        active: isActive,
       })}
-      disabled={!isEnabled}
       onClick={() => {
         if (isEnabled) {
           dispatch(nextStep({ step: step.name }));
@@ -23,6 +22,6 @@ export default (props) => {
       }}
     >
       {step.name}
-    </li>
+    </button>
   );
 };

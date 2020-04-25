@@ -77,7 +77,6 @@ const combineSkills = (state, choice) => {
       );
     }
 
-    console.log(skill);
     const isTrained = skill in inner;
     const hasSubtype = SKILL_MAP[skill].hasSubtype;
 

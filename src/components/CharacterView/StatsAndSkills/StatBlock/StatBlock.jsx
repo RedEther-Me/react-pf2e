@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ABILITY_LIST } from "../../../data/abilities";
+import { ABILITY_LIST } from "../../../../data/abilities";
 
 const StatBlock = (props) => {
   const { state } = props;

@@ -20,6 +20,7 @@ import {
   FEAT_PICKPOCKET,
   FEAT_SPECIALTY_CRAFTING,
   FEAT_STUDENT_OF_THE_CANNON,
+  FEAT_MAP,
 } from "./feats";
 
 const {
@@ -44,7 +45,9 @@ export const ACOLYTE_DATA = {
     [RELIGION]: TRAINED,
     [LORE]: { Scribe: TRAINED },
   },
-  feats: [FEAT_STUDENT_OF_THE_CANNON],
+  feats: {
+    FEAT_STUDENT_OF_THE_CANNON: FEAT_MAP[FEAT_STUDENT_OF_THE_CANNON],
+  },
 };
 
 export const NOBLE = "NOBLE";
@@ -60,7 +63,9 @@ export const NOBLE_DATA = {
     [SOCIETY]: TRAINED,
   },
   pick_skill: [[LORE, ["Genealogy", "Heraldry"]]],
-  feats: [FEAT_COURTLY_GRACES],
+  feats: {
+    FEAT_COURTLY_GRACES: FEAT_MAP[FEAT_COURTLY_GRACES],
+  },
 };
 
 export const SCHOLAR = "SCHOLAR";
@@ -92,7 +97,9 @@ export const SCOUT_DATA = {
     [SURVIVAL]: TRAINED,
   },
   pick_skill: [[LORE, ["Forest", "Cavern"]]],
-  feats: [FEAT_FORAGER],
+  feats: {
+    FEAT_FORAGER: FEAT_MAP[FEAT_FORAGER],
+  },
 };
 
 export const STREET_URCHIN = "STREET_URCHIN";
@@ -108,7 +115,9 @@ export const STREET_URCHIN_DATA = {
     [THIEVERY]: TRAINED,
   },
   pick_skill: [[LORE, ["Absalom", "Magnimar"]]],
-  feats: [FEAT_PICKPOCKET],
+  feats: {
+    FEAT_PICKPOCKET: FEAT_MAP[FEAT_PICKPOCKET],
+  },
 };
 
 export const TINKER = "TINKER";
@@ -124,7 +133,9 @@ export const TINKER_DATA = {
     [CRAFTING]: TRAINED,
     [LORE]: { Engineering: TRAINED },
   },
-  feats: [FEAT_SPECIALTY_CRAFTING],
+  feats: {
+    FEAT_SPECIALTY_CRAFTING: FEAT_MAP[FEAT_SPECIALTY_CRAFTING],
+  },
 };
 
 export const WARRIOR = "WARRIOR";
@@ -140,7 +151,9 @@ export const WARRIOR_DATA = {
     [INTIMIDATION]: TRAINED,
     [LORE]: { Warfare: TRAINED },
   },
-  feats: [FEAT_INTIMIDATING_GLARE],
+  feats: {
+    FEAT_INTIMIDATING_GLARE: FEAT_MAP[FEAT_INTIMIDATING_GLARE],
+  },
 };
 
 export const BACKGROUND_LIST = [

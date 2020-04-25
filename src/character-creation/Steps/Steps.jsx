@@ -12,13 +12,15 @@ export default (props) => {
 
   return (
     <Card fullHeight>
-      <ul className="list-group">
-        {steps
-          .filter((step) => step.visible)
-          .map((step) => (
-            <Step key={step.name} {...{ step, state, dispatch }} />
-          ))}
-      </ul>
+      <nav>
+        <div className="list-group">
+          {steps
+            .filter((step) => step.visible)
+            .map((step) => (
+              <Step key={step.name} {...{ step, state, dispatch }} />
+            ))}
+        </div>
+      </nav>
       <Row className="mt-2">
         <Col>
           <button

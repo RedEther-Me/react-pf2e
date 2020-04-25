@@ -133,21 +133,31 @@ export const ACTION_TUMBLE_THROUGH_DATA = {};
 
 export const ACTION_RAGE = "RAGE";
 export const ACTION_RAGE_DATA = {
+  name: ACTION_RAGE,
+  title: "Rage",
   traits: [BARBARIAN, CONCENTRATE, EMOTION, MENTAL],
 };
 export const ACTION_MIGHTY_RAGE = "MIGHTY_RAGE";
 export const ACTION_MIGHTY_RAGE_DATA = {
+  name: ACTION_MIGHTY_RAGE,
+  title: "Mighty Rage",
   traits: [BARBARIAN],
 };
 export const ACTION_MOMENT_OF_CLARITY = "ACTION_MOMENT_OF_CLARITY";
 export const ACTION_MOMENT_OF_CLARITY_DATA = {
+  name: ACTION_MOMENT_OF_CLARITY,
+  title: "Moment of Clarity",
   traits: [BARBARIAN, CONCENTRATE, RAGE],
 };
 export const ACTION_SUDDEN_CHARGE = "ACTION_SUDDEN_CHARGE";
 export const ACTION_SUDDEN_CHARGE_DATA = {
+  name: ACTION_SUDDEN_CHARGE,
+  title: "Sudden Charge",
   traits: [FLOURISH, OPEN],
 };
 export const ACTION_POWER_ATTACK = "ACTION_POWER_ATTACK";
 export const ACTION_POWER_ATTACK_DATA = {
+  name: ACTION_POWER_ATTACK,
+  title: "Power Attack",
   traits: [FLOURISH],
 };

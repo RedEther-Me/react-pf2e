@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import StatGroup from "../../StatGroup";
+import StatGroup from "../../../StatGroup";
 
 const VitalsBlock = (props) => {
   const { state } = props;

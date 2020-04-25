@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { SKILL_LIST } from "../../../data/skills";
+import { SKILL_LIST } from "../../../../data/skills";
 
 const SkillBlock = (props) => {
   const { state } = props;
@@ -26,8 +26,8 @@ const SkillBlock = (props) => {
           const subs = Object.entries(prof);
 
           return (
-            <Fragment>
-              <tr key={skill.name}>
+            <Fragment key={skill.name}>
+              <tr>
                 <td colSpan={2} className="table-primary">
                   {skill.title || skill.name}
                 </td>
