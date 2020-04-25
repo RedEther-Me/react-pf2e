@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Card, CardHeader, Row, Col } from "../../../components";
+import { Card, Row, Col } from "../../../components";
 import {
   STEP_CLASS_SELECTION,
-  STEP_CLASS_SUB_SELECTION,
+  // STEP_CLASS_SUB_SELECTION,
 } from "../../constants";
 
 const ClassFeatureMap = (props) => {

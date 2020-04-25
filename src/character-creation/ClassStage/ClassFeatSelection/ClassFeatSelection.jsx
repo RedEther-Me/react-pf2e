@@ -32,7 +32,7 @@ const filterFeats = (state) => {
 const ClassFeatSelection = (props) => {
   const { state, dispatch } = props;
 
-  const isValid = STEP_CLASS_FEAT in state.choices;
+  const isValid = state.preview.feats.free.class === 0;
 
   const header = <CardHeader label="Class Feats" isValid={isValid} />;
 

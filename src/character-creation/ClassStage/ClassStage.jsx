@@ -1,6 +1,7 @@
 import React from "react";
 
 import { SelectionLayout } from "../../components";
+import CharacterView from "../../components/CharacterView";
 import Steps from "../Steps";
 
 import ClassFeatureMap from "./ClassFeatureMap";
@@ -15,10 +16,10 @@ import {
 const mapComponent = ({ state }) => {
   switch (state.currentStep) {
     case STEP_CLASS_SELECTION: {
-      return ClassSelection;
+      return [ClassSelection, ClassFeatureMap];
     }
     case STEP_CLASS_FEAT: {
-      return ClassFeatSelection;
+      return [ClassFeatSelection, CharacterView];
     }
     default:
       return null;
@@ -28,7 +29,7 @@ const mapComponent = ({ state }) => {
 const ClassStage = (props) => {
   const { state, dispatch } = props;
 
-  const SecondComponent = mapComponent(props);
+  const [SecondComponent, MainComponent] = mapComponent(props);
   const firstColumn = (
     <Steps {...{ state, dispatch, nextStage: STAGE_ABILITY_SCORES }} />
   );
@@ -36,7 +37,7 @@ const ClassStage = (props) => {
 
   return (
     <SelectionLayout {...{ firstColumn, secondColumn }}>
-      <ClassFeatureMap {...{ state }} />
+      <MainComponent {...{ state }} />
     </SelectionLayout>
   );
 };

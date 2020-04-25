@@ -91,7 +91,47 @@ const combineSkills = (state, choice) => {
   }, state);
 };
 
-const combineFeats = (acc, choice) => acc;
+const combineFeats = (state, choice) => {
+  const { feats } = choice;
+
+  return Object.entries(feats || {}).reduce((inner, [feat, data]) => {
+    if (feat === "free") {
+      const {
+        class: updateClass,
+        skill: updateSkill,
+        ancestry: updateAncestry,
+        general: updateGeneral,
+      } = data;
+
+      const {
+        class: classFree = 0,
+        skill: skillFree = 0,
+        ancestry: ancestryFree = 0,
+        general: generalFree = 0,
+      } = inner.preview.feats.free;
+
+      const combined = {
+        class: updateClass ?? classFree,
+        skill: updateSkill ?? skillFree,
+        ancestry: updateAncestry ?? ancestryFree,
+        general: updateGeneral ?? generalFree,
+      };
+
+      const withFrees = Immutable.setIn(
+        inner,
+        ["preview", "feats", "free"],
+        combined
+      );
+
+      return withFrees;
+    }
+
+    const withFeat = Immutable.setIn(inner, ["preview", "feats", feat], data);
+    const withActions = subCombineActions(withFeat, data);
+
+    return withActions;
+  }, state);
+};
 
 const subCombineFeats = (state, feature) => {
   if ("feat" in feature) {
@@ -272,6 +312,7 @@ const stepMap = {
     combineFeatures
   ),
   [STEP_CLASS_SUB_SELECTION]: combine(combineSubClass, combineFeatures),
+  [STEP_CLASS_FEAT]: combine(combineFeats),
   [STAGE_ABILITY_SCORES]: combine(combineAbilityPicker, combineIntSkills),
   [STAGE_SKILLS]: combine(combineSkills),
 };

@@ -5,24 +5,25 @@ import { TRAINED } from "../../data/proficiencies";
 
 import { makeSelection } from "../creationActions";
 import { STAGE_SKILLS } from "../constants";
+import { counterSelectionHelper } from "../utils";
 
-export default (props) => {
+const SkillSelectionOption = (props) => {
   const { skill, state, dispatch } = props;
-  const { [skill.name]: curentSkill, free = 0, ...selectedSkills } =
-    state.choices[STAGE_SKILLS]?.skills || {};
   const isTrained = skill.name in state.preview.skills;
-  const isSelected = !!curentSkill;
+
+  const { isSelected, nextFree, value } = counterSelectionHelper({
+    itemName: skill.name,
+    group: state.choices[STAGE_SKILLS]?.skills,
+    currentFree: state.choices[STAGE_SKILLS]?.skills?.free,
+    fillValue: TRAINED,
+  });
 
   const onClassClick = () => {
     dispatch(
       makeSelection({
         key: STAGE_SKILLS,
         value: {
-          skills: {
-            ...selectedSkills,
-            free: isSelected ? free + 1 : free - 1,
-            ...(isSelected ? {} : { [skill.name]: TRAINED }),
-          },
+          skills: { ...value, nextFree },
         },
       })
     );
@@ -40,3 +41,5 @@ export default (props) => {
     </button>
   );
 };
+
+export default SkillSelectionOption;
