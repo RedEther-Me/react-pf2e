@@ -1,11 +1,11 @@
 import React from "react";
 import classnames from "classnames";
 
-import { TRAINED } from "../../data/proficiencies";
+import { TRAINED } from "../../../data/proficiencies";
 
-import { makeSelection } from "../creationActions";
-import { STAGE_SKILLS } from "../constants";
-import { counterSelectionHelper } from "../utils";
+import { makeSelection } from "../../creationActions";
+import { STAGE_SKILLS } from "../../constants";
+import { counterSelectionHelper } from "../../utils";
 
 const SkillSelectionOption = (props) => {
   const { skill, state, dispatch } = props;

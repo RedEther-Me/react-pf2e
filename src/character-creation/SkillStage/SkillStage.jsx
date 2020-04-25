@@ -4,25 +4,25 @@ import { SelectionLayout } from "../../components";
 import CharacterView from "../../components/CharacterView";
 import Steps from "../Steps";
 
-import AbilityScoresSelection from "./AbilityScoresSelection";
-import { STAGE_SKILLS, STEP_ABILITY_SCORES } from "../constants";
+import SkillSelection from "./SkillSelection";
+import { STAGE_EQUIPMENT, STEP_SKILLS } from "../constants";
 
 const mapComponent = ({ state }) => {
   switch (state.currentStep) {
-    case STEP_ABILITY_SCORES: {
-      return AbilityScoresSelection;
+    case STEP_SKILLS: {
+      return SkillSelection;
     }
     default:
       return null;
   }
 };
 
-const AbilityScoreStage = (props) => {
+const SkillStage = (props) => {
   const { state, dispatch } = props;
 
   const SecondComponent = mapComponent(props);
   const firstColumn = (
-    <Steps {...{ state, dispatch, nextStage: STAGE_SKILLS }} />
+    <Steps {...{ state, dispatch, nextStage: STAGE_EQUIPMENT }} />
   );
   const secondColumn = <SecondComponent {...{ state, dispatch }} />;
 
@@ -33,4 +33,4 @@ const AbilityScoreStage = (props) => {
   );
 };
 
-export default AbilityScoreStage;
+export default SkillStage;

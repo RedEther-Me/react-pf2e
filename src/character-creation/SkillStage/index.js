@@ -1,1 +1,1 @@
-export { default } from "./SkillsSelection";
+export { default } from "./SkillStage";

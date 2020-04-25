@@ -1,14 +1,14 @@
 import React from "react";
 
-import { Card, CardHeader, Row, Col } from "../../components";
-import { SKILL_LIST } from "../../data/skills";
+import { Card, CardHeader, Row, Col } from "../../../components";
+import { SKILL_LIST } from "../../../data/skills";
 
 import SkillsSelectionOption from "./SkillsSelectionOption";
 
-import { nextStep } from "../creationActions";
-import { STAGE_SKILLS } from "../constants";
+// import { nextStep } from "../../creationActions";
+import { STAGE_SKILLS } from "../../constants";
 
-export default (props) => {
+const SkillSelection = (props) => {
   const { state, dispatch } = props;
 
   const isValid = STAGE_SKILLS in state.choices && !state.preview.skills.free;
@@ -45,3 +45,5 @@ export default (props) => {
     </Card>
   );
 };
+
+export default SkillSelection;

@@ -6,7 +6,7 @@ import ancestries from "../../../data/ancestries";
 import AncestrySelectionOption from "./AncestrySelectionOption";
 
 import { nextStep } from "../../creationActions";
-import { STEP_SELECT_ANCESTRY, STEP_ANCESTRY_ABILITIES } from "../../constants";
+import { STEP_SELECT_ANCESTRY } from "../../constants";
 
 const AncestrySelection = (props) => {
   const { state, dispatch } = props;

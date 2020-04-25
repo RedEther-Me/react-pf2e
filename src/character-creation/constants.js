@@ -52,17 +52,19 @@ export const STAGE_CLASS_DATA = {
 };
 
 export const STAGE_ABILITY_SCORES = "3-Abilities Scores";
+export const STEP_ABILITY_SCORES = "Select Ability Boosts";
 export const STAGE_ABILITY_SCORES_DATA = {
   name: STAGE_ABILITY_SCORES,
   description: "Ability Boosts",
-  steps: [createStep({ name: STAGE_ABILITY_SCORES })],
+  steps: [createStep({ name: STEP_ABILITY_SCORES })],
 };
 
 export const STAGE_SKILLS = "4-Skills";
+export const STEP_SKILLS = "Select Skills";
 export const STAGE_SKILLS_DATA = {
   name: STAGE_SKILLS,
   description: "Skills",
-  steps: [createStep({ name: STAGE_SKILLS })],
+  steps: [createStep({ name: STEP_SKILLS })],
 };
 
 export const STAGE_EQUIPMENT = "5-Equipment";

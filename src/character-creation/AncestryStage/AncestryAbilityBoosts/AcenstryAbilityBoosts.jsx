@@ -9,11 +9,7 @@ import {
 } from "../../../components";
 
 import { makeSelection, nextStep } from "../../creationActions";
-import {
-  STEP_SELECT_ANCESTRY,
-  STEP_ANCESTRY_ABILITIES,
-  STEP_HERITAGE,
-} from "../../constants";
+import { STEP_SELECT_ANCESTRY, STEP_ANCESTRY_ABILITIES } from "../../constants";
 
 const AncestryAbilityBoosts = (props) => {
   const { state, dispatch } = props;

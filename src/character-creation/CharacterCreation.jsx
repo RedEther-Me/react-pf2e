@@ -1,6 +1,5 @@
 import React, { Fragment, useReducer } from "react";
 
-import Steps from "./Steps";
 import Stages from "./Stages";
 import AncestryStage from "./AncestryStage";
 import ClassStage from "./ClassStage";
