@@ -1,16 +1,18 @@
 import React from "react";
 
 import { Card, CardHeader, Row, Col } from "../../../components";
-import { FEAT_LIST } from "../../../data/feats";
+import { FEAT_LIST, CLASS_FEAT } from "../../../data/feats";
 
 import ClassFeatOption from "./ClassFeatOption";
 
 import { nextStep } from "../../creationActions";
-import { STEP_CLASS_FEAT, STEP_CLASS_SELECTION } from "../../constants";
+import { STEP_CLASS_SELECTION } from "../../constants";
 
-const filterFeats = (state) => {
+const filterFeats = (state, featType) => {
   return (feat) => {
-    const { requirements } = feat;
+    const { type, requirements } = feat;
+
+    if (!featType.includes(type)) return false;
 
     // Level
     if ("level" in requirements) {
@@ -36,7 +38,7 @@ const ClassFeatSelection = (props) => {
 
   const header = <CardHeader label="Class Feats" isValid={isValid} />;
 
-  const validFeats = FEAT_LIST.filter(filterFeats(state));
+  const validFeats = FEAT_LIST.filter(filterFeats(state, [CLASS_FEAT]));
 
   return (
     <Card header={header} fullHeight>

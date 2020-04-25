@@ -19,6 +19,7 @@ import { SKILL_MAP } from "../data/skills";
 import abilities from "../data/abilities";
 import calcMod from "../utils/calcMod";
 import { REMOVE, ALTER, BONUS } from "../data/classes";
+import { FEAT_MAP } from "../data/feats";
 
 const Immutable = require("seamless-immutable").static;
 
@@ -126,8 +127,10 @@ const combineFeats = (state, choice) => {
       return withFrees;
     }
 
-    const withFeat = Immutable.setIn(inner, ["preview", "feats", feat], data);
-    const withActions = subCombineActions(withFeat, data);
+    const lookup = typeof data === "string" ? FEAT_MAP[data] : data;
+
+    const withFeat = Immutable.setIn(inner, ["preview", "feats", feat], lookup);
+    const withActions = subCombineActions(withFeat, lookup);
 
     return withActions;
   }, state);
@@ -217,6 +220,21 @@ const combineAncestry = (state, choice) => {
   return withFlaw;
 };
 
+const combineBackgroundSkill = (state, choice) => {
+  if ("pick_feats" in state.choices[STEP_BACKGROUND]) {
+    const keys = Object.keys(choice.skills);
+    const [skill] = keys;
+
+    const [feat_wild] = state.choices[STEP_BACKGROUND].pick_feats;
+    const featName = `${feat_wild}${skill}`;
+    const feat = FEAT_MAP[featName];
+
+    return combineFeats(state, { feats: { [featName]: feat } });
+  }
+
+  return state;
+};
+
 const combineIntSkills = (state) => {
   const { [INTELLIGENCE]: intelligence } = state.preview;
   const { mod: intMod } = intelligence;
@@ -296,7 +314,7 @@ const stepMap = {
       stepName: STEP_BACKGROUND_SKILL,
     })
   ),
-  [STEP_BACKGROUND_SKILL]: combine(combineSkills),
+  [STEP_BACKGROUND_SKILL]: combine(combineSkills, combineBackgroundSkill),
   [STEP_BACKGROUND_ABILITIES]: combine(combineAbilityPicker),
   [STEP_CLASS_SELECTION]: combine(
     combineAbility,

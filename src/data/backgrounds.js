@@ -12,6 +12,15 @@ import {
   NATURE,
   OCCULTISM,
 } from "./skills";
+import {
+  FEAT_ASSURANCE_WILD,
+  FEAT_COURTLY_GRACES,
+  FEAT_FORAGER,
+  FEAT_INTIMIDATING_GLARE,
+  FEAT_PICKPOCKET,
+  FEAT_SPECIALTY_CRAFTING,
+  FEAT_STUDENT_OF_THE_CANNON,
+} from "./feats";
 
 const {
   STRENGTH,
@@ -35,7 +44,7 @@ export const ACOLYTE_DATA = {
     [RELIGION]: TRAINED,
     [LORE]: { sub: "Scribe", level: TRAINED },
   },
-  feats: ["Student of the Canon"],
+  feats: [FEAT_STUDENT_OF_THE_CANNON],
 };
 
 export const NOBLE = "NOBLE";
@@ -49,10 +58,9 @@ export const NOBLE_DATA = {
   ],
   skills: {
     [SOCIETY]: TRAINED,
-    // [LORE]: { sub: "Scribe", level: TRAINED },
   },
   pick_skill: [[LORE, ["Genealogy", "Heraldry"]]],
-  feats: ["Courtly Graces"],
+  feats: [FEAT_COURTLY_GRACES],
 };
 
 export const SCHOLAR = "SCHOLAR";
@@ -68,7 +76,7 @@ export const SCHOLAR_DATA = {
     [LORE]: { sub: "Academia", level: TRAINED },
   },
   pick_skill: [[ARCANA], [NATURE], [OCCULTISM], [RELIGION]],
-  feats: ["Assurance"],
+  pick_feats: [FEAT_ASSURANCE_WILD],
 };
 
 export const SCOUT = "SCOUT";
@@ -85,7 +93,7 @@ export const SCOUT_DATA = {
     // [LORE]: { sub: "Scribe", level: TRAINED },
   },
   pick_skill: [[LORE, ["Forest", "Cavern"]]],
-  feats: ["Forger"],
+  feats: [FEAT_FORAGER],
 };
 
 export const STREET_URCHIN = "STREET_URCHIN";
@@ -102,7 +110,7 @@ export const STREET_URCHIN_DATA = {
     // [LORE]: { sub: "Scribe", level: TRAINED },
   },
   pick_skill: [[LORE, ["Absalom", "Magnimar"]]],
-  feats: ["Pickpocket"],
+  feats: [FEAT_PICKPOCKET],
 };
 
 export const TINKER = "TINKER";
@@ -118,7 +126,7 @@ export const TINKER_DATA = {
     [CRAFTING]: TRAINED,
     [LORE]: { sub: "Engineering", level: TRAINED },
   },
-  feats: ["Specialty Crafting"],
+  feats: [FEAT_SPECIALTY_CRAFTING],
 };
 
 export const WARRIOR = "WARRIOR";
@@ -134,7 +142,7 @@ export const WARRIOR_DATA = {
     [INTIMIDATION]: TRAINED,
     [LORE]: { sub: "Warfare", level: TRAINED },
   },
-  feats: ["Intimidating Glare"],
+  feats: [FEAT_INTIMIDATING_GLARE],
 };
 
 export const BACKGROUND_LIST = [

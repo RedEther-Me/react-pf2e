@@ -1,3 +1,6 @@
+export const GENERAL = "GENERAL";
+export const SKILL = "SKILL";
+
 export const BARBARIAN = "BARBARIAN";
 export const FIGHTER = "FIGHTER";
 
@@ -10,3 +13,4 @@ export const TRANSMUTATION = "TRANSMUTATION";
 export const RAGE = "RAGE";
 export const FLOURISH = "FLOURISH";
 export const OPEN = "OPEN";
+export const FORTUNE = "FORTUNE";
