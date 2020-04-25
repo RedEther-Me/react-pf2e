@@ -1,55 +1,55 @@
 import ABILITIES from "./abilities";
 
 import {
-  BALANCE,
-  BORROW_AN_ACRCANE_SPELL,
-  CLIMB,
-  CRAFT,
-  DECIPHER_WRITING,
-  DISARM,
-  EARN_INCOME,
-  FORCE_OPEN,
-  GRAPPLE,
-  HIGH_JUMP,
-  IDENTIFY_ALCHEMY,
-  IDENTIFY_MAGIC,
-  LEARN_A_SPELL,
-  LONG_JUMP,
-  MANEUVER_IN_FLIGHT,
-  RECALL_KNOWLEDGE,
-  REPAIR,
-  SHOVE,
-  SQUEEZE,
-  SWIM,
-  TRIP,
-  TUMBLE_THROUGH,
-  CREATE_A_DIVERSION,
-  IMPERSONATE,
-  LIE,
-  FEINT,
-  COERCE,
-  DEMORALIZE,
-  ADMINISTER_FIRST_AID,
-  TREATE_DISEASE,
-  TREAT_POISON,
-  TREAT_WOUNDS,
-  COMMAND_AN_ANIMAL,
-  PERFORM,
-  SUBSIST,
-  CREATE_FORGERY,
-  CONCEAL_AN_OBJECT,
-  HIDE,
-  SNEAK,
-  SENSE_DIRECTION,
-  COVER_TRACKS,
-  TRACK,
-  PALM_AN_OBJECT,
-  STEAL,
-  DISABLE_A_DEVICE,
-  PICK_A_LOCK,
-  GATHER_INFORMATION,
-  MAKE_AN_IMPRESSION,
-  REQUEST,
+  ACTION_BALANCE,
+  ACTION_BORROW_AN_ACRCANE_SPELL,
+  ACTION_CLIMB,
+  ACTION_CRAFT,
+  ACTION_DECIPHER_WRITING,
+  ACTION_DISARM,
+  ACTION_EARN_INCOME,
+  ACTION_FORCE_OPEN,
+  ACTION_GRAPPLE,
+  ACTION_HIGH_JUMP,
+  ACTION_IDENTIFY_ALCHEMY,
+  ACTION_IDENTIFY_MAGIC,
+  ACTION_LEARN_A_SPELL,
+  ACTION_LONG_JUMP,
+  ACTION_MANEUVER_IN_FLIGHT,
+  ACTION_RECALL_KNOWLEDGE,
+  ACTION_REPAIR,
+  ACTION_SHOVE,
+  ACTION_SQUEEZE,
+  ACTION_SWIM,
+  ACTION_TRIP,
+  ACTION_TUMBLE_THROUGH,
+  ACTION_CREATE_A_DIVERSION,
+  ACTION_IMPERSONATE,
+  ACTION_LIE,
+  ACTION_FEINT,
+  ACTION_COERCE,
+  ACTION_DEMORALIZE,
+  ACTION_ADMINISTER_FIRST_AID,
+  ACTION_TREATE_DISEASE,
+  ACTION_TREAT_POISON,
+  ACTION_TREAT_WOUNDS,
+  ACTION_COMMAND_AN_ANIMAL,
+  ACTION_PERFORM,
+  ACTION_SUBSIST,
+  ACTION_CREATE_FORGERY,
+  ACTION_CONCEAL_AN_OBJECT,
+  ACTION_HIDE,
+  ACTION_SNEAK,
+  ACTION_SENSE_DIRECTION,
+  ACTION_COVER_TRACKS,
+  ACTION_TRACK,
+  ACTION_PALM_AN_OBJECT,
+  ACTION_STEAL,
+  ACTION_DISABLE_A_DEVICE,
+  ACTION_PICK_A_LOCK,
+  ACTION_GATHER_INFORMATION,
+  ACTION_MAKE_AN_IMPRESSION,
+  ACTION_REQUEST,
 } from "./actions";
 
 const { STRENGTH, DEXTERITY, INTELLIGENCE, WISDOM, CHARISMA } = ABILITIES;
@@ -58,20 +58,20 @@ export const ACROBATICS = "ACROBATICS";
 export const ACROBATICS_DATA = {
   name: ACROBATICS,
   key_ability: DEXTERITY,
-  untrained_actions: [BALANCE, TUMBLE_THROUGH],
-  trained_actions: [MANEUVER_IN_FLIGHT, SQUEEZE],
+  untrained_actions: [ACTION_BALANCE, ACTION_TUMBLE_THROUGH],
+  trained_actions: [ACTION_MANEUVER_IN_FLIGHT, ACTION_SQUEEZE],
 };
 
 export const ARCANA = "ARCANA";
 export const ARCANA_DATA = {
   name: ARCANA,
   key_ability: INTELLIGENCE,
-  untrained_actions: [RECALL_KNOWLEDGE],
+  untrained_actions: [ACTION_RECALL_KNOWLEDGE],
   trained_actions: [
-    BORROW_AN_ACRCANE_SPELL,
-    DECIPHER_WRITING,
-    IDENTIFY_MAGIC,
-    LEARN_A_SPELL,
+    ACTION_BORROW_AN_ACRCANE_SPELL,
+    ACTION_DECIPHER_WRITING,
+    ACTION_IDENTIFY_MAGIC,
+    ACTION_LEARN_A_SPELL,
   ],
 };
 
@@ -80,39 +80,47 @@ export const ATHLETICS_DATA = {
   name: ATHLETICS,
   key_ability: STRENGTH,
   untrained_actions: [
-    CLIMB,
-    FORCE_OPEN,
-    GRAPPLE,
-    HIGH_JUMP,
-    LONG_JUMP,
-    SHOVE,
-    SWIM,
-    TRIP,
+    ACTION_CLIMB,
+    ACTION_FORCE_OPEN,
+    ACTION_GRAPPLE,
+    ACTION_HIGH_JUMP,
+    ACTION_LONG_JUMP,
+    ACTION_SHOVE,
+    ACTION_SWIM,
+    ACTION_TRIP,
   ],
-  trained_actions: [DISARM],
+  trained_actions: [ACTION_DISARM],
 };
 
 export const CRAFTING = "CRAFTING";
 export const CRAFTING_DATA = {
   name: CRAFTING,
   key_ability: INTELLIGENCE,
-  untrained_actions: [RECALL_KNOWLEDGE, REPAIR],
-  trained_actions: [CRAFT, EARN_INCOME, IDENTIFY_ALCHEMY],
+  untrained_actions: [ACTION_RECALL_KNOWLEDGE, ACTION_REPAIR],
+  trained_actions: [ACTION_CRAFT, ACTION_EARN_INCOME, ACTION_IDENTIFY_ALCHEMY],
 };
 
 export const DECEPTION = "DECEPTION";
 export const DECEPTION_DATA = {
   name: DECEPTION,
   key_ability: CHARISMA,
-  untrained_actions: [CREATE_A_DIVERSION, IMPERSONATE, LIE],
-  trained_actions: [FEINT],
+  untrained_actions: [
+    ACTION_CREATE_A_DIVERSION,
+    ACTION_IMPERSONATE,
+    ACTION_LIE,
+  ],
+  trained_actions: [ACTION_FEINT],
 };
 
 export const DIPLOMACY = "DIPLOMACY";
 export const DIPLOMACY_DATA = {
   name: DIPLOMACY,
   key_ability: CHARISMA,
-  untrained_actions: [GATHER_INFORMATION, MAKE_AN_IMPRESSION, REQUEST],
+  untrained_actions: [
+    ACTION_GATHER_INFORMATION,
+    ACTION_MAKE_AN_IMPRESSION,
+    ACTION_REQUEST,
+  ],
   trained_actions: [],
 };
 
@@ -120,7 +128,7 @@ export const INTIMIDATION = "INTIMIDATION";
 export const INTIMIDATION_DATA = {
   name: INTIMIDATION,
   key_ability: CHARISMA,
-  untrained_actions: [COERCE, DEMORALIZE],
+  untrained_actions: [ACTION_COERCE, ACTION_DEMORALIZE],
   trained_actions: [],
 };
 
@@ -128,8 +136,8 @@ export const LORE = "LORE";
 export const LORE_DATA = {
   name: LORE,
   key_ability: INTELLIGENCE,
-  untrained_actions: [RECALL_KNOWLEDGE],
-  trained_actions: [EARN_INCOME],
+  untrained_actions: [ACTION_RECALL_KNOWLEDGE],
+  trained_actions: [ACTION_EARN_INCOME],
   hasSubtypes: true,
 };
 
@@ -137,55 +145,67 @@ export const MEDICINE = "MEDICINE";
 export const MEDICINE_DATA = {
   name: MEDICINE,
   key_ability: WISDOM,
-  untrained_actions: [ADMINISTER_FIRST_AID, RECALL_KNOWLEDGE],
-  trained_actions: [TREATE_DISEASE, TREAT_POISON, TREAT_WOUNDS],
+  untrained_actions: [ACTION_ADMINISTER_FIRST_AID, ACTION_RECALL_KNOWLEDGE],
+  trained_actions: [
+    ACTION_TREATE_DISEASE,
+    ACTION_TREAT_POISON,
+    ACTION_TREAT_WOUNDS,
+  ],
 };
 
 export const NATURE = "NATURE";
 export const NATURE_DATA = {
   name: NATURE,
   key_ability: WISDOM,
-  untrained_actions: [COMMAND_AN_ANIMAL, RECALL_KNOWLEDGE],
-  trained_actions: [IDENTIFY_MAGIC, LEARN_A_SPELL],
+  untrained_actions: [ACTION_COMMAND_AN_ANIMAL, ACTION_RECALL_KNOWLEDGE],
+  trained_actions: [ACTION_IDENTIFY_MAGIC, ACTION_LEARN_A_SPELL],
 };
 
 export const OCCULTISM = "OCCULTISM";
 export const OCCULTISM_DATA = {
   name: OCCULTISM,
   key_ability: INTELLIGENCE,
-  untrained_actions: [RECALL_KNOWLEDGE],
-  trained_actions: [DECIPHER_WRITING, IDENTIFY_MAGIC, LEARN_A_SPELL],
+  untrained_actions: [ACTION_RECALL_KNOWLEDGE],
+  trained_actions: [
+    ACTION_DECIPHER_WRITING,
+    ACTION_IDENTIFY_MAGIC,
+    ACTION_LEARN_A_SPELL,
+  ],
 };
 
 export const PERFORMANCE = "PERFORMANCE";
 export const PERFORMANCE_DATA = {
   name: PERFORMANCE,
   key_ability: CHARISMA,
-  untrained_actions: [PERFORM],
-  trained_actions: [EARN_INCOME],
+  untrained_actions: [ACTION_PERFORM],
+  trained_actions: [ACTION_EARN_INCOME],
 };
 
 export const RELIGION = "RELIGION";
 export const RELIGION_DATA = {
   name: RELIGION,
   key_ability: WISDOM,
-  untrained_actions: [RECALL_KNOWLEDGE],
-  trained_actions: [DECIPHER_WRITING, IDENTIFY_MAGIC, LEARN_A_SPELL],
+  untrained_actions: [ACTION_RECALL_KNOWLEDGE],
+  trained_actions: [
+    ACTION_DECIPHER_WRITING,
+    ACTION_IDENTIFY_MAGIC,
+    ACTION_LEARN_A_SPELL,
+  ],
 };
 
 export const SOCIETY = "SOCIETY";
 export const SOCIETY_DATA = {
   name: SOCIETY,
   key_ability: INTELLIGENCE,
-  untrained_actions: [RECALL_KNOWLEDGE, SUBSIST],
-  trained_actions: [CREATE_FORGERY, DECIPHER_WRITING],
+  untrained_actions: [ACTION_RECALL_KNOWLEDGE, ACTION_SUBSIST],
+  trained_actions: [ACTION_CREATE_FORGERY, ACTION_DECIPHER_WRITING],
 };
 
 export const STEALTH = "STEALTH";
 export const STEALTH_DATA = {
   name: STEALTH,
   key_ability: DEXTERITY,
-  untrained_actions: [CONCEAL_AN_OBJECT, HIDE, SNEAK],
+  untrained_actions: [ACTION_CONCEAL_AN_OBJECT, ACTION_HIDE, ACTION_SNEAK],
   trained_actions: [],
 };
 
@@ -193,16 +213,16 @@ export const SURVIVAL = "SURVIVAL";
 export const SURVIVAL_DATA = {
   name: SURVIVAL,
   key_ability: WISDOM,
-  untrained_actions: [SENSE_DIRECTION, SUBSIST],
-  trained_actions: [COVER_TRACKS, TRACK],
+  untrained_actions: [ACTION_SENSE_DIRECTION, ACTION_SUBSIST],
+  trained_actions: [ACTION_COVER_TRACKS, ACTION_TRACK],
 };
 
 export const THIEVERY = "THIEVERY";
 export const THIEVERY_DATA = {
   name: THIEVERY,
   key_ability: DEXTERITY,
-  untrained_actions: [PALM_AN_OBJECT, STEAL],
-  trained_actions: [DISABLE_A_DEVICE, PICK_A_LOCK],
+  untrained_actions: [ACTION_PALM_AN_OBJECT, ACTION_STEAL],
+  trained_actions: [ACTION_DISABLE_A_DEVICE, ACTION_PICK_A_LOCK],
 };
 
 export const SKILL_LIST = [

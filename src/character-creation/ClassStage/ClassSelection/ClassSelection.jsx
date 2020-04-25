@@ -8,7 +8,7 @@ import ClassSelectionOption from "./ClassSelectionOption";
 import { nextStep } from "../../creationActions";
 import { STEP_CLASS_SELECTION } from "../../constants";
 
-export default (props) => {
+const ClassSelection = (props) => {
   const { state, dispatch } = props;
 
   const isValid = STEP_CLASS_SELECTION in state.choices;
@@ -31,17 +31,19 @@ export default (props) => {
           </div>
         </Col>
       </Row>
-      {/* <Row className="mt-2">
+      <Row className="mt-2">
         <Col>
           <button
             className="btn btn-primary"
             disabled={!isValid}
-            onClick={() => dispatch(nextStep({ step: STEP_CLASS_SKILLS }))}
+            onClick={() => dispatch(nextStep({}))}
           >
             Continue
           </button>
         </Col>
-      </Row> */}
+      </Row>
     </Card>
   );
 };
+
+export default ClassSelection;

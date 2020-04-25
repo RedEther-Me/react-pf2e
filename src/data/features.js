@@ -1,4 +1,4 @@
-import { RAGE, RAGE_DATA } from "./actions";
+import { ACTION_RAGE, ACTION_RAGE_DATA } from "./actions";
 
 export const FEATURE_CLASS_FEAT = "CLASS_FEAT";
 export const FEATURE_CLASS_FEAT_DATA = {
@@ -40,7 +40,7 @@ export const FEATURE_RAGE = "RAGE";
 export const FEATURE_RAGE_DATA = {
   name: FEATURE_RAGE,
   actions: {
-    [RAGE]: RAGE_DATA,
+    [ACTION_RAGE]: ACTION_RAGE_DATA,
   },
 };
 export const FEATURE_INSTINCT = "INSTINCT";

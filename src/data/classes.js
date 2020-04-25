@@ -1,8 +1,8 @@
 import ABILITIES from "./abilities";
 import { TRAINED } from "./proficiencies";
 import { MORPH, PRIMAL, TRANSMUTATION } from "./traits";
-import { ATHLETICS, CRAFTING } from "./skills";
-import { RAGE, RAGE_DATA } from "./actions";
+import { ATHLETICS, CRAFTING, ACROBATICS } from "./skills";
+import { ACTION_RAGE, ACTION_RAGE_DATA } from "./actions";
 import {
   FEATURE_RAGE_DATA,
   FEATURE_ANATHEMA,
@@ -41,9 +41,9 @@ export const REMOVE = "REMOVE";
 export const ALTER = "ALTER";
 export const BONUS = "BONUS";
 
-const ALCHEMIST = "ALCHEMIST";
-const ALCHEMIST_DATA = {
-  name: ALCHEMIST,
+export const CLASS_ALCHEMIST = "CLASS_ALCHEMIST";
+const CLASS_ALCHEMIST_DATA = {
+  name: CLASS_ALCHEMIST,
   description: "You're an alchemist",
   ability_boosts: [INTELLIGENCE],
   skills: {
@@ -52,9 +52,9 @@ const ALCHEMIST_DATA = {
   },
 };
 
-const BARBARIAN = "BARBARIAN";
-const BARBARIAN_DATA = {
-  name: BARBARIAN,
+export const CLASS_BARBARIAN = "CLASS_BARBARIAN";
+const CLASS_BARBARIAN_DATA = {
+  name: CLASS_BARBARIAN,
   description: "You're a barbarian",
   ability_boosts: [STRENGTH],
   skills: {
@@ -119,9 +119,14 @@ const BARBARIAN_DATA = {
           type: FEATURE_INSTINCT_ABILITY,
           name: "Bestial Rage",
           actions: {
-            [RAGE]: {
-              ...RAGE_DATA,
-              traits: [...RAGE_DATA.traits, MORPH, PRIMAL, TRANSMUTATION],
+            [ACTION_RAGE]: {
+              ...ACTION_RAGE_DATA,
+              traits: [
+                ...ACTION_RAGE_DATA.traits,
+                MORPH,
+                PRIMAL,
+                TRANSMUTATION,
+              ],
             },
           },
           action: ALTER,
@@ -190,14 +195,32 @@ const BARBARIAN_DATA = {
   ],
 };
 
-const CLASS_LIST = [ALCHEMIST_DATA, BARBARIAN_DATA];
+export const CLASS_FIGHTER = "CLASS_FIGHTER";
+const CLASS_FIGHTER_DATA = {
+  name: CLASS_FIGHTER,
+  description: "You're an alchemist",
+  ability_boosts: [INTELLIGENCE],
+  skills: {
+    free: 3,
+  },
+  pick_skill: [[ACROBATICS, ATHLETICS]],
+};
+
+const CLASS_LIST = [
+  CLASS_ALCHEMIST_DATA,
+  CLASS_BARBARIAN_DATA,
+  CLASS_FIGHTER_DATA,
+];
 
 export default {
-  ALCHEMIST,
-  [ALCHEMIST]: ALCHEMIST_DATA,
+  CLASS_ALCHEMIST,
+  [CLASS_ALCHEMIST]: CLASS_ALCHEMIST_DATA,
 
-  BARBARIAN,
-  [BARBARIAN]: BARBARIAN_DATA,
+  CLASS_BARBARIAN,
+  [CLASS_BARBARIAN]: CLASS_BARBARIAN_DATA,
+
+  CLASS_FIGHTER,
+  CLASS_FIGHTER_DATA,
 
   list: CLASS_LIST,
 };

@@ -5,12 +5,20 @@ import Steps from "../Steps";
 
 import ClassFeatureMap from "./ClassFeatureMap";
 import ClassSelection from "./ClassSelection";
-import { STAGE_ABILITY_SCORES, STEP_CLASS_SELECTION } from "../constants";
+import ClassFeatSelection from "./ClassFeatSelection";
+import {
+  STAGE_ABILITY_SCORES,
+  STEP_CLASS_SELECTION,
+  STEP_CLASS_FEAT,
+} from "../constants";
 
-const mapComponent = ({ state, dispatch }) => {
+const mapComponent = ({ state }) => {
   switch (state.currentStep) {
     case STEP_CLASS_SELECTION: {
       return ClassSelection;
+    }
+    case STEP_CLASS_FEAT: {
+      return ClassFeatSelection;
     }
     default:
       return null;

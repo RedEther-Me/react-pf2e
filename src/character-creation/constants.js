@@ -39,13 +39,15 @@ export const STAGE_ANCESTRY_DATA = {
 
 export const STAGE_CLASS = "2-Class";
 export const STEP_CLASS_SELECTION = "Select Class";
-export const STEP_CLASS_SUB_SELECTIOIN = "-- Sub Class";
+export const STEP_CLASS_SUB_SELECTION = "-- Sub Class";
+export const STEP_CLASS_FEAT = "Class Feats";
 export const STAGE_CLASS_DATA = {
   name: STAGE_CLASS,
   description: "Class",
   steps: [
     createStep({ name: STEP_CLASS_SELECTION }),
-    createStep({ name: STEP_CLASS_SUB_SELECTIOIN, visible: false }),
+    createStep({ name: STEP_CLASS_SUB_SELECTION, visible: false }),
+    createStep({ name: STEP_CLASS_FEAT, visible: false }),
   ],
 };
 

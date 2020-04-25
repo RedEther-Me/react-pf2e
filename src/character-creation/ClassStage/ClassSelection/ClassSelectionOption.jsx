@@ -5,10 +5,10 @@ import SelectionOption from "../../../components/SelectionList/SelectionOption";
 import { makeSelection, makeMultiSelection } from "../../creationActions";
 import {
   STEP_CLASS_SELECTION,
-  STEP_CLASS_SUB_SELECTIOIN,
+  STEP_CLASS_SUB_SELECTION,
 } from "../../constants";
 
-export default (props) => {
+const ClassSelectionOption = (props) => {
   const { classType, state, dispatch } = props;
 
   const getLookupAndSubsets = () => {
@@ -22,7 +22,7 @@ export default (props) => {
     const isClass = lookup.name === state.choices[STEP_CLASS_SELECTION]?.name;
     if (subset) {
       const isSubClass =
-        subset === state.choices[STEP_CLASS_SUB_SELECTIOIN]?.name;
+        subset === state.choices[STEP_CLASS_SUB_SELECTION]?.name;
       return isClass && isSubClass;
     }
 
@@ -38,7 +38,7 @@ export default (props) => {
         makeMultiSelection({
           selections: [
             { key: STEP_CLASS_SELECTION, value: lookup },
-            { key: STEP_CLASS_SUB_SELECTIOIN, value: found },
+            { key: STEP_CLASS_SUB_SELECTION, value: found },
           ],
         })
       );
@@ -55,3 +55,5 @@ export default (props) => {
     />
   );
 };
+
+export default ClassSelectionOption;

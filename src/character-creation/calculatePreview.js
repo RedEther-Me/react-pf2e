@@ -11,7 +11,8 @@ import {
   STAGE_SKILLS,
   STAGE_ANCESTRY,
   STAGE_CLASS,
-  STEP_CLASS_SUB_SELECTIOIN,
+  STEP_CLASS_SUB_SELECTION,
+  STEP_CLASS_FEAT,
 } from "./constants";
 
 import { SKILL_MAP } from "../data/skills";
@@ -119,33 +120,45 @@ const combineFeatures = (state) => {
     const levelFeatures = inner.preview.featureMap[level];
 
     return levelFeatures.reduce(
-      combine(subCombineActions, subCombineFeats),
+      combine(
+        subCombineActions,
+        subCombineFeats,
+        combineOrder({
+          predicate: (choice, state) => true,
+          stageName: STAGE_CLASS,
+          stepName: STEP_CLASS_FEAT,
+        })
+      ),
       inner
     );
   }, state);
 };
 
-const combineOrder = ({
-  field,
+export const combineOrder = ({
+  predicate,
   stageName,
   stepName,
-  enabled = true,
+  enabled = false,
   visible = true,
 }) => (state, choice) => {
-  const isVisible = field in choice;
+  const toggle = predicate(choice, state);
 
   const stepIndex = state.stages[stageName].steps.findIndex(
     (step) => step.name === stepName
   );
+  const { enabled: prevEnabled, visible: prevVisible } = state.stages[
+    stageName
+  ].steps[stepIndex];
+
   const withEnabled = Immutable.setIn(
     state,
     ["stages", stageName, "steps", stepIndex, "enabled"],
-    isVisible && enabled
+    toggle ? toggle && prevEnabled : enabled
   );
   const withVisible = Immutable.setIn(
     withEnabled,
     ["stages", stageName, "steps", stepIndex, "visible"],
-    isVisible && visible
+    toggle ? visible : prevVisible
   );
 
   return withVisible;
@@ -238,7 +251,7 @@ const stepMap = {
     combineSkills,
     combineFeats,
     combineOrder({
-      field: "pick_skill",
+      predicate: (choice) => "pick_skill" in choice,
       stageName: STAGE_ANCESTRY,
       stepName: STEP_BACKGROUND_SKILL,
     })
@@ -249,15 +262,16 @@ const stepMap = {
     combineAbility,
     combineSkills,
     combineOrder({
-      field: "subclasses",
+      predicate: (choice) => "subclasses" in choice,
       stageName: STAGE_CLASS,
-      stepName: STEP_CLASS_SUB_SELECTIOIN,
+      stepName: STEP_CLASS_SUB_SELECTION,
       visible: false,
+      enabled: true,
     }),
     combineClass,
     combineFeatures
   ),
-  [STEP_CLASS_SUB_SELECTIOIN]: combine(combineSubClass, combineFeatures),
+  [STEP_CLASS_SUB_SELECTION]: combine(combineSubClass, combineFeatures),
   [STAGE_ABILITY_SCORES]: combine(combineAbilityPicker, combineIntSkills),
   [STAGE_SKILLS]: combine(combineSkills),
 };
